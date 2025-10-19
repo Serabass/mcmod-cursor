@@ -32,13 +32,24 @@ public class ModEntities {
             .build()
     );
     
+    // Регистрируем взрывающуюся курицу
+    public static final EntityType<ExplodingChicken> EXPLODING_CHICKEN = Registry.register(
+        BuiltInRegistries.ENTITY_TYPE,
+        new ResourceLocation(Cursor.MOD_ID, "exploding_chicken"),
+        FabricEntityTypeBuilder.create(MobCategory.CREATURE, ExplodingChicken::new)
+            .dimensions(EntityDimensions.fixed(0.4f, 0.7f))
+            .build()
+    );
+    
     public static void registerModEntities() {
         Cursor.LOGGER.info("🔷 Registering Mod Entities for " + Cursor.MOD_ID);
         
         // Регистрируем атрибуты моба
         FabricDefaultAttributeRegistry.register(CUBE_MOB, CubeMob.createAttributes());
+        FabricDefaultAttributeRegistry.register(EXPLODING_CHICKEN, ExplodingChicken.createAttributes());
         
         Cursor.LOGGER.info("🔷 CUBE_MOB registered with ID: cursor:cube_mob");
         Cursor.LOGGER.info("🥕 CARROT_PROJECTILE registered with ID: cursor:carrot_projectile");
+        Cursor.LOGGER.info("🐔💣 EXPLODING_CHICKEN registered with ID: cursor:exploding_chicken");
     }
 }

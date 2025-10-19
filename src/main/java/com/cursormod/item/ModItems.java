@@ -49,6 +49,12 @@ public class ModItems {
         new CarrotCannon(new FabricItemSettings()
             .durability(200) // 200 выстрелов
         ));
+    
+    // Куриная пушка - стреляет взрывающимися курицами
+    public static final Item CHICKEN_GUN = registerItem("chicken_gun",
+        new ChickenGun(new FabricItemSettings()
+            .durability(150) // 150 выстрелов
+        ));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(Cursor.MOD_ID, name), item);

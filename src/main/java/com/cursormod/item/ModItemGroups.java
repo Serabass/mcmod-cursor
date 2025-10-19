@@ -24,6 +24,7 @@ public class ModItemGroups {
                        entries.accept(ModItems.VODKA);
                        entries.accept(ModItems.LASER_GUN);
                        entries.accept(ModItems.CARROT_CANNON);
+                       entries.accept(ModItems.CHICKEN_GUN);
                    })
             .build()
     );
