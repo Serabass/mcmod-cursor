@@ -8,6 +8,7 @@ import com.cursormod.item.ModItemGroups;
 import com.cursormod.entity.ModEntities;
 import com.cursormod.events.ServerTickHandler;
 import com.cursormod.events.EntityInteractionHandler;
+import com.cursormod.events.PigIgnitionHandler;
 import com.cursormod.effects.DrunkEffect;
 import com.cursormod.effects.BigPigEffect;
 import net.fabricmc.api.ModInitializer;
@@ -55,6 +56,9 @@ public class Cursor implements ModInitializer {
         
         // Регистрируем обработчик взаимодействия с сущностями
         EntityInteractionHandler.register();
+        
+        // Регистрируем обработчик загорания свиней
+        PigIgnitionHandler.register();
         
         // Регистрируем эффекты мода
         DrunkEffect.DRUNK_EFFECT.toString(); // Инициализируем эффект
