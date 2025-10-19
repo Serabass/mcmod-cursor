@@ -1,0 +1,45 @@
+{
+	"schemaVersion": 1,
+	"id": "cursor",
+	"version": "${version}",
+	"name": "Cursor",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/cursor/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.cursormod.Cursor"
+		],
+		"client": [
+			"com.cursormod.CursorClient",
+			"com.cursormod.client.ModClient"
+		],
+		"fabric-datagen": [
+			"com.cursormod.CursorDataGenerator"
+		]
+	},
+	"mixins": [
+		"cursor.mixins.json",
+		{
+			"config": "cursor.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.17.3",
+		"minecraft": "~1.20.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
