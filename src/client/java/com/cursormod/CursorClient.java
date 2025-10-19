@@ -2,6 +2,7 @@ package com.cursormod;
 
 import com.cursormod.client.CarrotProjectileRenderer;
 import com.cursormod.client.renderer.CubeMobRenderer;
+import com.cursormod.client.renderer.HealthBarRenderer;
 import com.cursormod.entity.ModEntities;
 import com.cursormod.fluid.ModFluids;
 import net.fabricmc.api.ClientModInitializer;
@@ -30,9 +31,13 @@ public class CursorClient implements ClientModInitializer {
 			)
 		);
 		
+		// Регистрируем рендерер полос здоровья
+		HealthBarRenderer.register();
+		
 		Cursor.LOGGER.info("🔷 CubeMobRenderer registered!");
 		Cursor.LOGGER.info("🥕 CarrotProjectileRenderer registered!");
 		Cursor.LOGGER.info("🐷💣 ExplodingPigRenderer registered!");
 		Cursor.LOGGER.info("💧 DisappointmentFluid renderer registered!");
+		Cursor.LOGGER.info("💚❤️ HealthBarRenderer registered! Теперь все знают, кто на грани смерти!");
 	}
 }
