@@ -46,8 +46,8 @@ public class ThorHammerProjectile extends ThrowableItemProjectile {
         super.onHitEntity(hitResult);
         
         if (!this.level().isClientSide()) {
-            // Наносим урон цели
-            float damage = 8.0F; // Мощный урон молота
+            // Наносим смертельный урон - молот Тора убивает с одного попадания!
+            float damage = 1000.0F; // Смертельный урон - больше чем у любого моба
             hitResult.getEntity().hurt(this.damageSources().thrown(this, this.getOwner()), damage);
             
             // Играем звук попадания
@@ -60,7 +60,7 @@ public class ThorHammerProjectile extends ThrowableItemProjectile {
             // Начинаем возврат
             startReturn();
             
-            Cursor.LOGGER.info("⚡ Thor's hammer hit {} for {} damage!", 
+            Cursor.LOGGER.info("💀⚡ Thor's hammer OBLITERATED {} with {} damage! One hit kill!", 
                 hitResult.getEntity().getType().getDescription().getString(), damage);
         }
     }
