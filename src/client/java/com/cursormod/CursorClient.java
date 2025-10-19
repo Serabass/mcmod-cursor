@@ -1,7 +1,7 @@
 package com.cursormod;
 
 import com.cursormod.client.CarrotProjectileRenderer;
-import com.cursormod.client.CubeMobRenderer;
+import com.cursormod.client.renderer.CubeMobRenderer;
 import com.cursormod.entity.ModEntities;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
