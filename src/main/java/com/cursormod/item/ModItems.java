@@ -37,6 +37,12 @@ public class ModItems {
                 .saturationMod(0.8f)
                 .build())
         ));
+    
+    // Лазерная пушка - поджигает всё на своём пути
+    public static final Item LASER_GUN = registerItem("laser_gun",
+        new LaserGun(new FabricItemSettings()
+            .durability(100) // 100 выстрелов
+        ));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(Cursor.MOD_ID, name), item);

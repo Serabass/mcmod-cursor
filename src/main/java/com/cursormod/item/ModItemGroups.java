@@ -22,6 +22,7 @@ public class ModItemGroups {
                        entries.accept(ModItems.CUBE_MOB_SPAWN_EGG);
                        entries.accept(ModItems.PIZZA_SWORD);
                        entries.accept(ModItems.VODKA);
+                       entries.accept(ModItems.LASER_GUN);
                    })
             .build()
     );
