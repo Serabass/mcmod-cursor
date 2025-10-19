@@ -71,6 +71,13 @@ public class ModItems {
     // Свиноматор-3000 - блок для спавна взрывных свиней
     public static final Item PIG_SPAWNER = registerItem("pig_spawner",
         new BlockItem(ModBlocks.PIG_SPAWNER, new FabricItemSettings()));
+    
+    // Молот Тора - бросается и возвращается в руку
+    public static final Item THOR_HAMMER = registerItem("thor_hammer",
+        new ThorHammerItem(new FabricItemSettings()
+            .durability(500) // 500 использований
+            .fireResistant() // Не горит в лаве
+        ));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(Cursor.MOD_ID, name), item);
@@ -79,5 +86,6 @@ public class ModItems {
     public static void registerModItems() {
         Cursor.LOGGER.info("🍌 Registering Mod Items for " + Cursor.MOD_ID);
         Cursor.LOGGER.info("🍌 RED_BANANA registered with ID: cursor:red_banana");
+        Cursor.LOGGER.info("🔨⚡ THOR_HAMMER registered with ID: cursor:thor_hammer");
     }
 }

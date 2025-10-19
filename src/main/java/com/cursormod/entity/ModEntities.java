@@ -42,6 +42,16 @@ public class ModEntities {
             .build()
     );
     
+    // Регистрируем снаряд молота Тора
+    public static final EntityType<ThorHammerProjectile> THOR_HAMMER_PROJECTILE = Registry.register(
+        BuiltInRegistries.ENTITY_TYPE,
+        new ResourceLocation(Cursor.MOD_ID, "thor_hammer_projectile"),
+        FabricEntityTypeBuilder.create(MobCategory.MISC, (EntityType<ThorHammerProjectile> entityType, Level level) -> 
+            new ThorHammerProjectile(entityType, level))
+            .dimensions(EntityDimensions.fixed(0.5f, 0.5f))
+            .build()
+    );
+    
     public static void registerModEntities() {
         Cursor.LOGGER.info("🔷 Registering Mod Entities for " + Cursor.MOD_ID);
         
@@ -52,5 +62,6 @@ public class ModEntities {
         Cursor.LOGGER.info("🔷 CUBE_MOB registered with ID: cursor:cube_mob");
         Cursor.LOGGER.info("🥕 CARROT_PROJECTILE registered with ID: cursor:carrot_projectile");
         Cursor.LOGGER.info("🐷💣 EXPLODING_PIG registered with ID: cursor:exploding_pig");
+        Cursor.LOGGER.info("🔨⚡ THOR_HAMMER_PROJECTILE registered with ID: cursor:thor_hammer_projectile");
     }
 }

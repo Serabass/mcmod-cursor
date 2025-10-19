@@ -13,6 +13,8 @@
   "entity.cursor.cube_mob": "Кубический моб",
   "entity.cursor.carrot_projectile": "Снаряд морковки",
   "entity.cursor.exploding_pig": "Взрывающаяся свинья",
+  "entity.cursor.thor_hammer_projectile": "Молот Тора",
+  "item.cursor.thor_hammer": "Молот Тора",
   "itemGroup.cursor.cursor_group": "Мод Cursor",
   "effect.cursor.drunk": "Пьянство",
   "effect.cursor.big_pig": "Большая свинья"

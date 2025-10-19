@@ -13,6 +13,8 @@
   "entity.cursor.cube_mob": "Cube Mob",
   "entity.cursor.carrot_projectile": "Carrot Projectile",
   "entity.cursor.exploding_pig": "Exploding Pig",
+  "entity.cursor.thor_hammer_projectile": "Thor's Hammer",
+  "item.cursor.thor_hammer": "Thor's Hammer",
   "itemGroup.cursor.cursor_group": "Cursor Mod",
   "effect.cursor.drunk": "Drunk",
   "effect.cursor.big_pig": "Big Pig"
