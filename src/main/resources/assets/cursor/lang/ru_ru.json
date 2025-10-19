@@ -5,10 +5,10 @@
   "item.cursor.vodka": "Водка",
   "item.cursor.laser_gun": "Лазерная пушка",
   "item.cursor.carrot_cannon": "Морковная пушка",
-  "item.cursor.chicken_gun": "Куриная пушка",
+  "item.cursor.chicken_gun": "Свиная пушка",
   "entity.cursor.cube_mob": "Кубический моб",
   "entity.cursor.carrot_projectile": "Снаряд морковки",
-  "entity.cursor.exploding_chicken": "Взрывающаяся курица",
+  "entity.cursor.exploding_pig": "Взрывающаяся свинья",
   "itemGroup.cursor.cursor_group": "Мод Cursor",
   "effect.cursor.drunk": "Пьянство",
   "effect.cursor.big_pig": "Большая свинья"

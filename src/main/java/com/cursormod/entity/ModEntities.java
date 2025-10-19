@@ -32,12 +32,12 @@ public class ModEntities {
             .build()
     );
     
-    // Регистрируем взрывающуюся курицу
-    public static final EntityType<ExplodingChicken> EXPLODING_CHICKEN = Registry.register(
+    // Регистрируем взрывающуюся свинью
+    public static final EntityType<ExplodingPig> EXPLODING_PIG = Registry.register(
         BuiltInRegistries.ENTITY_TYPE,
-        new ResourceLocation(Cursor.MOD_ID, "exploding_chicken"),
-        FabricEntityTypeBuilder.create(MobCategory.CREATURE, ExplodingChicken::new)
-            .dimensions(EntityDimensions.fixed(0.4f, 0.7f))
+        new ResourceLocation(Cursor.MOD_ID, "exploding_pig"),
+        FabricEntityTypeBuilder.create(MobCategory.CREATURE, ExplodingPig::new)
+            .dimensions(EntityDimensions.fixed(0.9f, 0.9f))
             .build()
     );
     
@@ -46,10 +46,10 @@ public class ModEntities {
         
         // Регистрируем атрибуты моба
         FabricDefaultAttributeRegistry.register(CUBE_MOB, CubeMob.createAttributes());
-        FabricDefaultAttributeRegistry.register(EXPLODING_CHICKEN, ExplodingChicken.createAttributes());
+        FabricDefaultAttributeRegistry.register(EXPLODING_PIG, ExplodingPig.createAttributes());
         
         Cursor.LOGGER.info("🔷 CUBE_MOB registered with ID: cursor:cube_mob");
         Cursor.LOGGER.info("🥕 CARROT_PROJECTILE registered with ID: cursor:carrot_projectile");
-        Cursor.LOGGER.info("🐔💣 EXPLODING_CHICKEN registered with ID: cursor:exploding_chicken");
+        Cursor.LOGGER.info("🐷💣 EXPLODING_PIG registered with ID: cursor:exploding_pig");
     }
 }

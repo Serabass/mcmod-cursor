@@ -8,7 +8,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.animal.Chicken;
+import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
@@ -16,19 +16,19 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.ChatFormatting;
 
-public class ExplodingChicken extends Chicken {
+public class ExplodingPig extends Pig {
     
     private static final EntityDataAccessor<Integer> FUSE_TIME = 
-        SynchedEntityData.defineId(ExplodingChicken.class, EntityDataSerializers.INT);
+        SynchedEntityData.defineId(ExplodingPig.class, EntityDataSerializers.INT);
     
     private int ticksUntilExplosion;
     private boolean isExploding = false;
     
-    public ExplodingChicken(EntityType<? extends Chicken> entityType, Level level) {
+    public ExplodingPig(EntityType<? extends Pig> entityType, Level level) {
         super(entityType, level);
         // Рандомное время до взрыва от 2 до 10 секунд (40-200 тиков)
         this.ticksUntilExplosion = 40 + level.random.nextInt(161);
-        Cursor.LOGGER.info("🐔💣 ExplodingChicken created! Will explode in {} ticks!", ticksUntilExplosion);
+        Cursor.LOGGER.info("🐷💣 ExplodingPig created! Will explode in {} ticks!", ticksUntilExplosion);
     }
     
     @Override
@@ -47,7 +47,7 @@ public class ExplodingChicken extends Chicken {
             // Обновляем синхронизированные данные для клиента
             this.entityData.set(FUSE_TIME, ticksUntilExplosion);
             
-            // Курица бегает как ненормальная - увеличиваем скорость
+            // Свинья бегает как ненормальная - увеличиваем скорость
             if (this.onGround()) {
                 // Случайное направление движения
                 if (this.random.nextInt(10) == 0) {
@@ -90,7 +90,7 @@ public class ExplodingChicken extends Chicken {
         if (!this.level().isClientSide() && !isExploding) {
             isExploding = true;
             
-            Cursor.LOGGER.info("🐔💥 ExplodingChicken exploded at {}", this.blockPosition());
+            Cursor.LOGGER.info("🐷💥 ExplodingPig exploded at {}", this.blockPosition());
             
             // Создаем взрыв (сила 2.0 - как у крипера)
             this.level().explode(
@@ -112,7 +112,7 @@ public class ExplodingChicken extends Chicken {
                     50, 1.0, 1.0, 1.0, 0.2);
             }
             
-            // Удаляем курицу
+            // Удаляем свинью
             this.discard();
         }
     }
@@ -131,13 +131,13 @@ public class ExplodingChicken extends Chicken {
     
     @Override
     public boolean isPushable() {
-        return false; // Нельзя толкать взрывающуюся курицу!
+        return false; // Нельзя толкать взрывающуюся свинью!
     }
     
     public static AttributeSupplier.Builder createAttributes() {
-        return Chicken.createAttributes()
-            .add(Attributes.MAX_HEALTH, 4.0)
-            .add(Attributes.MOVEMENT_SPEED, 0.35); // Быстрее обычной курицы!
+        return Pig.createAttributes()
+            .add(Attributes.MAX_HEALTH, 10.0)
+            .add(Attributes.MOVEMENT_SPEED, 0.35); // Быстрее обычной свиньи!
     }
     
     @Override
@@ -173,3 +173,4 @@ public class ExplodingChicken extends Chicken {
         return true; // Имя всегда видно
     }
 }
+

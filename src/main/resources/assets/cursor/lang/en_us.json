@@ -5,10 +5,10 @@
   "item.cursor.vodka": "Vodka",
   "item.cursor.laser_gun": "Laser Gun",
   "item.cursor.carrot_cannon": "Carrot Cannon",
-  "item.cursor.chicken_gun": "Chicken Gun",
+  "item.cursor.chicken_gun": "Pig Gun",
   "entity.cursor.cube_mob": "Cube Mob",
   "entity.cursor.carrot_projectile": "Carrot Projectile",
-  "entity.cursor.exploding_chicken": "Exploding Chicken",
+  "entity.cursor.exploding_pig": "Exploding Pig",
   "itemGroup.cursor.cursor_group": "Cursor Mod",
   "effect.cursor.drunk": "Drunk",
   "effect.cursor.big_pig": "Big Pig"

@@ -1,7 +1,7 @@
 package com.cursormod.item;
 
 import com.cursormod.Cursor;
-import com.cursormod.entity.ExplodingChicken;
+import com.cursormod.entity.ExplodingPig;
 import com.cursormod.entity.ModEntities;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -19,7 +19,7 @@ public class ChickenGun extends Item {
     
     public ChickenGun(Properties properties) {
         super(properties);
-        Cursor.LOGGER.info("🐔🔫 ChickenGun created! A weapon that shoots exploding chickens!");
+        Cursor.LOGGER.info("🐷🔫 PigGun created! A weapon that shoots exploding pigs!");
     }
     
     @Override
@@ -27,29 +27,29 @@ public class ChickenGun extends Item {
         ItemStack itemStack = player.getItemInHand(hand);
         
         if (!level.isClientSide()) {
-            // Создаем взрывающуюся курицу
-            ExplodingChicken chicken = new ExplodingChicken(ModEntities.EXPLODING_CHICKEN, level);
+            // Создаем взрывающуюся свинью
+            ExplodingPig pig = new ExplodingPig(ModEntities.EXPLODING_PIG, level);
             
             // Позиция перед игроком
             Vec3 lookDirection = player.getLookAngle();
             Vec3 spawnPos = player.getEyePosition().add(lookDirection.scale(1.5));
             
-            chicken.setPos(spawnPos.x, spawnPos.y, spawnPos.z);
+            pig.setPos(spawnPos.x, spawnPos.y, spawnPos.z);
             
-            // Запускаем курицу в направлении взгляда игрока с большой скоростью
+            // Запускаем свинью в направлении взгляда игрока с большой скоростью
             double speed = 1.5;
-            chicken.setDeltaMovement(
+            pig.setDeltaMovement(
                 lookDirection.x * speed,
                 lookDirection.y * speed + 0.3, // Небольшой подъем
                 lookDirection.z * speed
             );
             
-            // Добавляем курицу в мир
-            level.addFreshEntity(chicken);
+            // Добавляем свинью в мир
+            level.addFreshEntity(pig);
             
-            // Играем звук выстрела курицы
+            // Играем звук выстрела свиньи
             level.playSound(null, player.getX(), player.getY(), player.getZ(), 
-                SoundEvents.CHICKEN_HURT, SoundSource.PLAYERS, 1.0F, 0.5F);
+                SoundEvents.PIG_HURT, SoundSource.PLAYERS, 1.0F, 0.5F);
             level.playSound(null, player.getX(), player.getY(), player.getZ(), 
                 SoundEvents.GENERIC_EXPLODE, SoundSource.PLAYERS, 0.3F, 2.0F);
             
@@ -63,7 +63,7 @@ public class ChickenGun extends Item {
                 });
             }
             
-            Cursor.LOGGER.info("🐔🔫 Chicken gun fired! Exploding chicken launched!");
+            Cursor.LOGGER.info("🐷🔫 Pig gun fired! Exploding pig launched!");
         }
         
         return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());

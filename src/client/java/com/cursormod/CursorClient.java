@@ -5,7 +5,7 @@ import com.cursormod.client.renderer.CubeMobRenderer;
 import com.cursormod.entity.ModEntities;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.minecraft.client.renderer.entity.ChickenRenderer;
+import net.minecraft.client.renderer.entity.PigRenderer;
 
 public class CursorClient implements ClientModInitializer {
 	@Override
@@ -15,10 +15,10 @@ public class CursorClient implements ClientModInitializer {
 		// Регистрируем рендереры сущностей
 		EntityRendererRegistry.register(ModEntities.CUBE_MOB, CubeMobRenderer::new);
 		EntityRendererRegistry.register(ModEntities.CARROT_PROJECTILE, CarrotProjectileRenderer::new);
-		EntityRendererRegistry.register(ModEntities.EXPLODING_CHICKEN, ChickenRenderer::new);
+		EntityRendererRegistry.register(ModEntities.EXPLODING_PIG, PigRenderer::new);
 		
 		Cursor.LOGGER.info("🔷 CubeMobRenderer registered!");
 		Cursor.LOGGER.info("🥕 CarrotProjectileRenderer registered!");
-		Cursor.LOGGER.info("🐔💣 ExplodingChickenRenderer registered!");
+		Cursor.LOGGER.info("🐷💣 ExplodingPigRenderer registered!");
 	}
 }
