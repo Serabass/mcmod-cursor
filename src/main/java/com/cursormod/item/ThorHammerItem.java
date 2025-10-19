@@ -18,7 +18,7 @@ import net.minecraft.world.phys.Vec3;
 public class ThorHammerItem extends Item {
     
     public ThorHammerItem(Properties properties) {
-        super(properties);
+        super(properties); // Используем свойства как есть
         Cursor.LOGGER.info("🔨 ThorHammerItem created! By the power of Asgard!");
     }
     
