@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Тесты для предмета Vodka - напиток, который делает мир лучше (или хуже)
+ * Tests for VodkaItem - a drink that makes the world better (or worse)
  * 🍺🧪
  * 
- * NOTE: Полное тестирование требует создания полноценного Minecraft мира
+ * NOTE: Full testing requires creating a complete Minecraft world
  */
-@DisplayName("🍺 Тесты VodkaItem")
+@DisplayName("🍺 VodkaItem Tests")
 class VodkaItemTest {
 
     @BeforeAll
@@ -24,73 +24,73 @@ class VodkaItemTest {
     }
 
     @Test
-    @DisplayName("🍺 VodkaItem класс должен существовать")
+    @DisplayName("🍺 VodkaItem class should exist")
     void testVodkaItemClassExists() {
         assertNotNull(VodkaItem.class, 
-            "📦 Класс VodkaItem должен существовать!");
+            "📦 VodkaItem class should exist!");
     }
 
     @Test
-    @DisplayName("🆔 VodkaItem должен быть Item")
+    @DisplayName("🆔 VodkaItem should be an Item")
     void testVodkaItemIsItem() {
         assertTrue(net.minecraft.world.item.Item.class.isAssignableFrom(VodkaItem.class),
-            "🏷️ VodkaItem должен наследоваться от Item!");
+            "🏷️ VodkaItem should extend Item!");
     }
 
     @Test
-    @DisplayName("🍷 VodkaItem должен иметь метод finishUsingItem")
+    @DisplayName("🍷 VodkaItem should have finishUsingItem method")
     void testVodkaItemHasFinishUsingItem() {
         try {
             var method = VodkaItem.class.getMethod("finishUsingItem", 
                 net.minecraft.world.item.ItemStack.class,
                 net.minecraft.world.level.Level.class,
                 net.minecraft.world.entity.LivingEntity.class);
-            assertNotNull(method, "🍷 VodkaItem должен иметь метод finishUsingItem!");
+            assertNotNull(method, "🍷 VodkaItem should have finishUsingItem method!");
         } catch (NoSuchMethodException e) {
-            fail("🍷 VodkaItem должен иметь метод finishUsingItem!");
+            fail("🍷 VodkaItem should have finishUsingItem method!");
         }
     }
 
     @Test
-    @DisplayName("⏱️ VodkaItem должен иметь метод getUseDuration")
+    @DisplayName("⏱️ VodkaItem should have getUseDuration method")
     void testVodkaItemHasGetUseDuration() {
         try {
             var method = VodkaItem.class.getMethod("getUseDuration", 
                 net.minecraft.world.item.ItemStack.class);
-            assertNotNull(method, "⏱️ VodkaItem должен иметь метод getUseDuration!");
+            assertNotNull(method, "⏱️ VodkaItem should have getUseDuration method!");
         } catch (NoSuchMethodException e) {
-            fail("⏱️ VodkaItem должен иметь метод getUseDuration!");
+            fail("⏱️ VodkaItem should have getUseDuration method!");
         }
     }
 
     @Test
-    @DisplayName("🎭 VodkaItem должен иметь метод getUseAnimation")
+    @DisplayName("🎭 VodkaItem should have getUseAnimation method")
     void testVodkaItemHasGetUseAnimation() {
         try {
             var method = VodkaItem.class.getMethod("getUseAnimation", 
                 net.minecraft.world.item.ItemStack.class);
-            assertNotNull(method, "🎭 VodkaItem должен иметь метод getUseAnimation!");
+            assertNotNull(method, "🎭 VodkaItem should have getUseAnimation method!");
         } catch (NoSuchMethodException e) {
-            fail("🎭 VodkaItem должен иметь метод getUseAnimation!");
+            fail("🎭 VodkaItem should have getUseAnimation method!");
         }
     }
 
     @Test
-    @DisplayName("🍽️ VodkaItem должен быть съедобным")
+    @DisplayName("🍽️ VodkaItem should be edible")
     void testVodkaItemIsEdible() {
         try {
             var method = VodkaItem.class.getMethod("isEdible");
-            assertNotNull(method, "🍽️ VodkaItem должен иметь метод isEdible!");
+            assertNotNull(method, "🍽️ VodkaItem should have isEdible method!");
         } catch (NoSuchMethodException e) {
-            fail("🍽️ VodkaItem должен иметь метод isEdible!");
+            fail("🍽️ VodkaItem should have isEdible method!");
         }
     }
 
     @Test
-    @DisplayName("✅ Все базовые методы VodkaItem существуют")
+    @DisplayName("✅ All basic VodkaItem methods exist")
     void testAllBasicMethodsExist() {
-        assertNotNull(VodkaItem.class, "Класс существует");
-        assertTrue(net.minecraft.world.item.Item.class.isAssignableFrom(VodkaItem.class), "Наследуется от Item");
+        assertNotNull(VodkaItem.class, "Class exists");
+        assertTrue(net.minecraft.world.item.Item.class.isAssignableFrom(VodkaItem.class), "Extends Item");
         
         try {
             VodkaItem.class.getMethod("finishUsingItem", 
@@ -101,7 +101,7 @@ class VodkaItemTest {
             VodkaItem.class.getMethod("getUseAnimation", net.minecraft.world.item.ItemStack.class);
             VodkaItem.class.getMethod("isEdible");
         } catch (NoSuchMethodException e) {
-            fail("Не все методы существуют: " + e.getMessage());
+            fail("Not all methods exist: " + e.getMessage());
         }
     }
 }

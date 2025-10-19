@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Тесты для ChickenGun - оружие, которое стреляет взрывающимися свиньями
+ * Tests for ChickenGun - a weapon that shoots exploding pigs
  * 🐷🔫🧪
  * 
- * NOTE: Название класса - ChickenGun, но стреляет свиньями. Это не баг, это фича!
+ * NOTE: Class name is ChickenGun, but it shoots pigs. This is not a bug, it's a feature!
  */
-@DisplayName("🐷🔫 Тесты ChickenGun")
+@DisplayName("🐷🔫 ChickenGun Tests")
 class ChickenGunTest {
 
     @BeforeAll
@@ -24,62 +24,62 @@ class ChickenGunTest {
     }
 
     @Test
-    @DisplayName("🔫 ChickenGun класс должен существовать")
+    @DisplayName("🔫 ChickenGun class should exist")
     void testChickenGunClassExists() {
         assertNotNull(ChickenGun.class, 
-            "📦 Класс ChickenGun должен существовать!");
+            "📦 ChickenGun class should exist!");
     }
 
     @Test
-    @DisplayName("🆔 ChickenGun должен быть Item")
+    @DisplayName("🆔 ChickenGun should be an Item")
     void testChickenGunIsItem() {
         assertTrue(net.minecraft.world.item.Item.class.isAssignableFrom(ChickenGun.class),
-            "🏷️ ChickenGun должен наследоваться от Item!");
+            "🏷️ ChickenGun should extend Item!");
     }
 
     @Test
-    @DisplayName("🎯 ChickenGun должен иметь метод use")
+    @DisplayName("🎯 ChickenGun should have use method")
     void testChickenGunHasUse() {
         try {
             var method = ChickenGun.class.getMethod("use", 
                 net.minecraft.world.level.Level.class,
                 net.minecraft.world.entity.player.Player.class,
                 net.minecraft.world.InteractionHand.class);
-            assertNotNull(method, "🎯 ChickenGun должен иметь метод use!");
+            assertNotNull(method, "🎯 ChickenGun should have use method!");
         } catch (NoSuchMethodException e) {
-            fail("🎯 ChickenGun должен иметь метод use!");
+            fail("🎯 ChickenGun should have use method!");
         }
     }
 
     @Test
-    @DisplayName("⏱️ ChickenGun должен иметь метод getUseDuration")
+    @DisplayName("⏱️ ChickenGun should have getUseDuration method")
     void testChickenGunHasGetUseDuration() {
         try {
             var method = ChickenGun.class.getMethod("getUseDuration", 
                 net.minecraft.world.item.ItemStack.class);
-            assertNotNull(method, "⏱️ ChickenGun должен иметь метод getUseDuration!");
+            assertNotNull(method, "⏱️ ChickenGun should have getUseDuration method!");
         } catch (NoSuchMethodException e) {
-            fail("⏱️ ChickenGun должен иметь метод getUseDuration!");
+            fail("⏱️ ChickenGun should have getUseDuration method!");
         }
     }
 
     @Test
-    @DisplayName("🎭 ChickenGun должен иметь метод getUseAnimation")
+    @DisplayName("🎭 ChickenGun should have getUseAnimation method")
     void testChickenGunHasGetUseAnimation() {
         try {
             var method = ChickenGun.class.getMethod("getUseAnimation", 
                 net.minecraft.world.item.ItemStack.class);
-            assertNotNull(method, "🎭 ChickenGun должен иметь метод getUseAnimation!");
+            assertNotNull(method, "🎭 ChickenGun should have getUseAnimation method!");
         } catch (NoSuchMethodException e) {
-            fail("🎭 ChickenGun должен иметь метод getUseAnimation!");
+            fail("🎭 ChickenGun should have getUseAnimation method!");
         }
     }
 
     @Test
-    @DisplayName("✅ Все базовые методы ChickenGun существуют")
+    @DisplayName("✅ All basic ChickenGun methods exist")
     void testAllBasicMethodsExist() {
-        assertNotNull(ChickenGun.class, "Класс существует");
-        assertTrue(net.minecraft.world.item.Item.class.isAssignableFrom(ChickenGun.class), "Наследуется от Item");
+        assertNotNull(ChickenGun.class, "Class exists");
+        assertTrue(net.minecraft.world.item.Item.class.isAssignableFrom(ChickenGun.class), "Extends Item");
         
         try {
             ChickenGun.class.getMethod("use", 
@@ -89,7 +89,7 @@ class ChickenGunTest {
             ChickenGun.class.getMethod("getUseDuration", net.minecraft.world.item.ItemStack.class);
             ChickenGun.class.getMethod("getUseAnimation", net.minecraft.world.item.ItemStack.class);
         } catch (NoSuchMethodException e) {
-            fail("Не все методы существуют: " + e.getMessage());
+            fail("Not all methods exist: " + e.getMessage());
         }
     }
 }

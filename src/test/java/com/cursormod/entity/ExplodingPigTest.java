@@ -9,68 +9,68 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Максимально простые тесты для взрывных свиней
+ * Simple tests for exploding pigs
  * 🐷💣🧪
  * 
- * NOTE: Полное тестирование Minecraft сущностей требует интеграционных тестов
+ * NOTE: Full testing of Minecraft entities requires integration tests
  */
-@DisplayName("🐷💣 Тесты ExplodingPig")
+@DisplayName("🐷💣 ExplodingPig Tests")
 class ExplodingPigTest {
 
     @BeforeAll
     static void initMinecraft() {
-        // Инициализируем Minecraft
+        // Initialize Minecraft
         SharedConstants.tryDetectVersion();
         Bootstrap.bootStrap();
     }
 
     @Test
-    @DisplayName("🐷 ExplodingPig класс должен существовать")
+    @DisplayName("🐷 ExplodingPig class should exist")
     void testExplodingPigClassExists() {
         assertNotNull(ExplodingPig.class, 
-            "📦 Класс ExplodingPig должен существовать!");
+            "📦 ExplodingPig class should exist!");
     }
 
     @Test
-    @DisplayName("🆔 ExplodingPig должен быть Entity")
+    @DisplayName("🆔 ExplodingPig should be an Entity")
     void testExplodingPigIsEntity() {
         assertTrue(net.minecraft.world.entity.Entity.class.isAssignableFrom(ExplodingPig.class),
-            "🏷️ ExplodingPig должен наследоваться от Entity!");
+            "🏷️ ExplodingPig should extend Entity!");
     }
 
     @Test
-    @DisplayName("🔥 ExplodingPig должен иметь метод createAttributes")
+    @DisplayName("🔥 ExplodingPig should have createAttributes method")
     void testExplodingPigHasCreateAttributes() {
         try {
             var method = ExplodingPig.class.getMethod("createAttributes");
-            assertNotNull(method, "🔥 ExplodingPig должен иметь метод createAttributes!");
+            assertNotNull(method, "🔥 ExplodingPig should have createAttributes method!");
         } catch (NoSuchMethodException e) {
-            fail("🔥 ExplodingPig должен иметь метод createAttributes!");
+            fail("🔥 ExplodingPig should have createAttributes method!");
         }
     }
 
     @Test
-    @DisplayName("💣 ExplodingPig должен иметь метод explode")
+    @DisplayName("💣 ExplodingPig should have explode method")
     void testExplodingPigHasExplode() {
         try {
             var method = ExplodingPig.class.getDeclaredMethod("explode");
-            assertNotNull(method, "💣 ExplodingPig должен иметь метод explode!");
+            assertNotNull(method, "💣 ExplodingPig should have explode method!");
         } catch (NoSuchMethodException e) {
-            fail("💣 ExplodingPig должен иметь метод explode!");
+            fail("💣 ExplodingPig should have explode method!");
         }
     }
 
     @Test
-    @DisplayName("✅ Все базовые методы ExplodingPig существуют")
+    @DisplayName("✅ All basic ExplodingPig methods exist")
     void testAllBasicMethodsExist() {
-        assertNotNull(ExplodingPig.class, "Класс существует");
-        assertTrue(net.minecraft.world.entity.Entity.class.isAssignableFrom(ExplodingPig.class), "Наследуется от Entity");
+        assertNotNull(ExplodingPig.class, "Class exists");
+        assertTrue(net.minecraft.world.entity.Entity.class.isAssignableFrom(ExplodingPig.class), "Extends Entity");
         
         try {
             ExplodingPig.class.getMethod("createAttributes");
             ExplodingPig.class.getDeclaredMethod("explode");
         } catch (NoSuchMethodException e) {
-            fail("Не все методы существуют: " + e.getMessage());
+            fail("Not all methods exist: " + e.getMessage());
         }
     }
 }

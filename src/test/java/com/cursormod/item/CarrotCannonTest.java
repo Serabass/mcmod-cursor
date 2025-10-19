@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Тесты для CarrotCannon - оружие, которое стреляет морковками
+ * Tests for CarrotCannon - a weapon that shoots carrots
  * 🥕🔫🧪
  * 
- * NOTE: Проверено - морковки действительно летают
+ * NOTE: Verified - carrots really do fly
  */
-@DisplayName("🥕🔫 Тесты CarrotCannon")
+@DisplayName("🥕🔫 CarrotCannon Tests")
 class CarrotCannonTest {
 
     @BeforeAll
@@ -24,62 +24,62 @@ class CarrotCannonTest {
     }
 
     @Test
-    @DisplayName("🥕 CarrotCannon класс должен существовать")
+    @DisplayName("🥕 CarrotCannon class should exist")
     void testCarrotCannonClassExists() {
         assertNotNull(CarrotCannon.class, 
-            "📦 Класс CarrotCannon должен существовать!");
+            "📦 CarrotCannon class should exist!");
     }
 
     @Test
-    @DisplayName("🆔 CarrotCannon должен быть Item")
+    @DisplayName("🆔 CarrotCannon should be an Item")
     void testCarrotCannonIsItem() {
         assertTrue(net.minecraft.world.item.Item.class.isAssignableFrom(CarrotCannon.class),
-            "🏷️ CarrotCannon должен наследоваться от Item!");
+            "🏷️ CarrotCannon should extend Item!");
     }
 
     @Test
-    @DisplayName("🎯 CarrotCannon должен иметь метод use")
+    @DisplayName("🎯 CarrotCannon should have use method")
     void testCarrotCannonHasUse() {
         try {
             var method = CarrotCannon.class.getMethod("use", 
                 net.minecraft.world.level.Level.class,
                 net.minecraft.world.entity.player.Player.class,
                 net.minecraft.world.InteractionHand.class);
-            assertNotNull(method, "🎯 CarrotCannon должен иметь метод use!");
+            assertNotNull(method, "🎯 CarrotCannon should have use method!");
         } catch (NoSuchMethodException e) {
-            fail("🎯 CarrotCannon должен иметь метод use!");
+            fail("🎯 CarrotCannon should have use method!");
         }
     }
 
     @Test
-    @DisplayName("⏱️ CarrotCannon должен иметь метод getUseDuration")
+    @DisplayName("⏱️ CarrotCannon should have getUseDuration method")
     void testCarrotCannonHasGetUseDuration() {
         try {
             var method = CarrotCannon.class.getMethod("getUseDuration", 
                 net.minecraft.world.item.ItemStack.class);
-            assertNotNull(method, "⏱️ CarrotCannon должен иметь метод getUseDuration!");
+            assertNotNull(method, "⏱️ CarrotCannon should have getUseDuration method!");
         } catch (NoSuchMethodException e) {
-            fail("⏱️ CarrotCannon должен иметь метод getUseDuration!");
+            fail("⏱️ CarrotCannon should have getUseDuration method!");
         }
     }
 
     @Test
-    @DisplayName("🎭 CarrotCannon должен иметь метод getUseAnimation")
+    @DisplayName("🎭 CarrotCannon should have getUseAnimation method")
     void testCarrotCannonHasGetUseAnimation() {
         try {
             var method = CarrotCannon.class.getMethod("getUseAnimation", 
                 net.minecraft.world.item.ItemStack.class);
-            assertNotNull(method, "🎭 CarrotCannon должен иметь метод getUseAnimation!");
+            assertNotNull(method, "🎭 CarrotCannon should have getUseAnimation method!");
         } catch (NoSuchMethodException e) {
-            fail("🎭 CarrotCannon должен иметь метод getUseAnimation!");
+            fail("🎭 CarrotCannon should have getUseAnimation method!");
         }
     }
 
     @Test
-    @DisplayName("✅ Все базовые методы CarrotCannon существуют")
+    @DisplayName("✅ All basic CarrotCannon methods exist")
     void testAllBasicMethodsExist() {
-        assertNotNull(CarrotCannon.class, "Класс существует");
-        assertTrue(net.minecraft.world.item.Item.class.isAssignableFrom(CarrotCannon.class), "Наследуется от Item");
+        assertNotNull(CarrotCannon.class, "Class exists");
+        assertTrue(net.minecraft.world.item.Item.class.isAssignableFrom(CarrotCannon.class), "Extends Item");
         
         try {
             CarrotCannon.class.getMethod("use", 
@@ -89,7 +89,7 @@ class CarrotCannonTest {
             CarrotCannon.class.getMethod("getUseDuration", net.minecraft.world.item.ItemStack.class);
             CarrotCannon.class.getMethod("getUseAnimation", net.minecraft.world.item.ItemStack.class);
         } catch (NoSuchMethodException e) {
-            fail("Не все методы существуют: " + e.getMessage());
+            fail("Not all methods exist: " + e.getMessage());
         }
     }
 }

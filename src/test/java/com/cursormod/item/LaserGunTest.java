@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Тесты для LaserGun - оружие, которое жжет всё на своем пути
+ * Tests for LaserGun - a weapon that burns everything in its path
  * 🔫🔥🧪
  * 
- * NOTE: Не направляйте на себя, может быть опасно
+ * NOTE: Don't point at yourself, may be dangerous
  */
-@DisplayName("🔫🔥 Тесты LaserGun")
+@DisplayName("🔫🔥 LaserGun Tests")
 class LaserGunTest {
 
     @BeforeAll
@@ -24,62 +24,62 @@ class LaserGunTest {
     }
 
     @Test
-    @DisplayName("🔫 LaserGun класс должен существовать")
+    @DisplayName("🔫 LaserGun class should exist")
     void testLaserGunClassExists() {
         assertNotNull(LaserGun.class, 
-            "📦 Класс LaserGun должен существовать!");
+            "📦 LaserGun class should exist!");
     }
 
     @Test
-    @DisplayName("🆔 LaserGun должен быть Item")
+    @DisplayName("🆔 LaserGun should be an Item")
     void testLaserGunIsItem() {
         assertTrue(net.minecraft.world.item.Item.class.isAssignableFrom(LaserGun.class),
-            "🏷️ LaserGun должен наследоваться от Item!");
+            "🏷️ LaserGun should extend Item!");
     }
 
     @Test
-    @DisplayName("🎯 LaserGun должен иметь метод use")
+    @DisplayName("🎯 LaserGun should have use method")
     void testLaserGunHasUse() {
         try {
             var method = LaserGun.class.getMethod("use", 
                 net.minecraft.world.level.Level.class,
                 net.minecraft.world.entity.player.Player.class,
                 net.minecraft.world.InteractionHand.class);
-            assertNotNull(method, "🎯 LaserGun должен иметь метод use!");
+            assertNotNull(method, "🎯 LaserGun should have use method!");
         } catch (NoSuchMethodException e) {
-            fail("🎯 LaserGun должен иметь метод use!");
+            fail("🎯 LaserGun should have use method!");
         }
     }
 
     @Test
-    @DisplayName("⏱️ LaserGun должен иметь метод getUseDuration")
+    @DisplayName("⏱️ LaserGun should have getUseDuration method")
     void testLaserGunHasGetUseDuration() {
         try {
             var method = LaserGun.class.getMethod("getUseDuration", 
                 net.minecraft.world.item.ItemStack.class);
-            assertNotNull(method, "⏱️ LaserGun должен иметь метод getUseDuration!");
+            assertNotNull(method, "⏱️ LaserGun should have getUseDuration method!");
         } catch (NoSuchMethodException e) {
-            fail("⏱️ LaserGun должен иметь метод getUseDuration!");
+            fail("⏱️ LaserGun should have getUseDuration method!");
         }
     }
 
     @Test
-    @DisplayName("🎭 LaserGun должен иметь метод getUseAnimation")
+    @DisplayName("🎭 LaserGun should have getUseAnimation method")
     void testLaserGunHasGetUseAnimation() {
         try {
             var method = LaserGun.class.getMethod("getUseAnimation", 
                 net.minecraft.world.item.ItemStack.class);
-            assertNotNull(method, "🎭 LaserGun должен иметь метод getUseAnimation!");
+            assertNotNull(method, "🎭 LaserGun should have getUseAnimation method!");
         } catch (NoSuchMethodException e) {
-            fail("🎭 LaserGun должен иметь метод getUseAnimation!");
+            fail("🎭 LaserGun should have getUseAnimation method!");
         }
     }
 
     @Test
-    @DisplayName("✅ Все базовые методы LaserGun существуют")
+    @DisplayName("✅ All basic LaserGun methods exist")
     void testAllBasicMethodsExist() {
-        assertNotNull(LaserGun.class, "Класс существует");
-        assertTrue(net.minecraft.world.item.Item.class.isAssignableFrom(LaserGun.class), "Наследуется от Item");
+        assertNotNull(LaserGun.class, "Class exists");
+        assertTrue(net.minecraft.world.item.Item.class.isAssignableFrom(LaserGun.class), "Extends Item");
         
         try {
             LaserGun.class.getMethod("use", 
@@ -89,7 +89,7 @@ class LaserGunTest {
             LaserGun.class.getMethod("getUseDuration", net.minecraft.world.item.ItemStack.class);
             LaserGun.class.getMethod("getUseAnimation", net.minecraft.world.item.ItemStack.class);
         } catch (NoSuchMethodException e) {
-            fail("Не все методы существуют: " + e.getMessage());
+            fail("Not all methods exist: " + e.getMessage());
         }
     }
 }

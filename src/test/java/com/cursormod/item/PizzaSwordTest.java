@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Тесты для PizzaSword - меч, который можно съесть
+ * Tests for PizzaSword - a sword you can eat
  * 🍕⚔️🧪
  * 
- * NOTE: Лучший меч для голодных воинов
+ * NOTE: Best sword for hungry warriors
  */
-@DisplayName("🍕⚔️ Тесты PizzaSword")
+@DisplayName("🍕⚔️ PizzaSword Tests")
 class PizzaSwordTest {
 
     @BeforeAll
@@ -24,87 +24,87 @@ class PizzaSwordTest {
     }
 
     @Test
-    @DisplayName("🍕 PizzaSword класс должен существовать")
+    @DisplayName("🍕 PizzaSword class should exist")
     void testPizzaSwordClassExists() {
         assertNotNull(PizzaSword.class, 
-            "📦 Класс PizzaSword должен существовать!");
+            "📦 PizzaSword class should exist!");
     }
 
     @Test
-    @DisplayName("🆔 PizzaSword должен быть SwordItem")
+    @DisplayName("🆔 PizzaSword should be a SwordItem")
     void testPizzaSwordIsSwordItem() {
         assertTrue(net.minecraft.world.item.SwordItem.class.isAssignableFrom(PizzaSword.class),
-            "🏷️ PizzaSword должен наследоваться от SwordItem!");
+            "🏷️ PizzaSword should extend SwordItem!");
     }
 
     @Test
-    @DisplayName("⚔️ PizzaSword должен иметь метод hurtEnemy")
+    @DisplayName("⚔️ PizzaSword should have hurtEnemy method")
     void testPizzaSwordHasHurtEnemy() {
         try {
             var method = PizzaSword.class.getMethod("hurtEnemy", 
                 net.minecraft.world.item.ItemStack.class,
                 net.minecraft.world.entity.LivingEntity.class,
                 net.minecraft.world.entity.LivingEntity.class);
-            assertNotNull(method, "⚔️ PizzaSword должен иметь метод hurtEnemy!");
+            assertNotNull(method, "⚔️ PizzaSword should have hurtEnemy method!");
         } catch (NoSuchMethodException e) {
-            fail("⚔️ PizzaSword должен иметь метод hurtEnemy!");
+            fail("⚔️ PizzaSword should have hurtEnemy method!");
         }
     }
 
     @Test
-    @DisplayName("🎭 PizzaSword должен иметь метод getUseAnimation")
+    @DisplayName("🎭 PizzaSword should have getUseAnimation method")
     void testPizzaSwordHasGetUseAnimation() {
         try {
             var method = PizzaSword.class.getMethod("getUseAnimation", 
                 net.minecraft.world.item.ItemStack.class);
-            assertNotNull(method, "🎭 PizzaSword должен иметь метод getUseAnimation!");
+            assertNotNull(method, "🎭 PizzaSword should have getUseAnimation method!");
         } catch (NoSuchMethodException e) {
-            fail("🎭 PizzaSword должен иметь метод getUseAnimation!");
+            fail("🎭 PizzaSword should have getUseAnimation method!");
         }
     }
 
     @Test
-    @DisplayName("⏱️ PizzaSword должен иметь метод getUseDuration")
+    @DisplayName("⏱️ PizzaSword should have getUseDuration method")
     void testPizzaSwordHasGetUseDuration() {
         try {
             var method = PizzaSword.class.getMethod("getUseDuration", 
                 net.minecraft.world.item.ItemStack.class);
-            assertNotNull(method, "⏱️ PizzaSword должен иметь метод getUseDuration!");
+            assertNotNull(method, "⏱️ PizzaSword should have getUseDuration method!");
         } catch (NoSuchMethodException e) {
-            fail("⏱️ PizzaSword должен иметь метод getUseDuration!");
+            fail("⏱️ PizzaSword should have getUseDuration method!");
         }
     }
 
     @Test
-    @DisplayName("🍽️ PizzaSword должен быть съедобным")
+    @DisplayName("🍽️ PizzaSword should be edible")
     void testPizzaSwordIsEdible() {
         try {
             var method = PizzaSword.class.getMethod("isEdible");
-            assertNotNull(method, "🍽️ PizzaSword должен иметь метод isEdible!");
+            assertNotNull(method, "🍽️ PizzaSword should have isEdible method!");
         } catch (NoSuchMethodException e) {
-            fail("🍽️ PizzaSword должен иметь метод isEdible!");
+            fail("🍽️ PizzaSword should have isEdible method!");
         }
     }
 
     @Test
-    @DisplayName("🍴 PizzaSword должен иметь метод finishUsingItem")
+    @DisplayName("🍴 PizzaSword should have finishUsingItem method")
     void testPizzaSwordHasFinishUsingItem() {
         try {
             var method = PizzaSword.class.getMethod("finishUsingItem", 
                 net.minecraft.world.item.ItemStack.class,
                 net.minecraft.world.level.Level.class,
                 net.minecraft.world.entity.LivingEntity.class);
-            assertNotNull(method, "🍴 PizzaSword должен иметь метод finishUsingItem!");
+            assertNotNull(method, "🍴 PizzaSword should have finishUsingItem method!");
         } catch (NoSuchMethodException e) {
-            fail("🍴 PizzaSword должен иметь метод finishUsingItem!");
+            fail("🍴 PizzaSword should have finishUsingItem method!");
         }
     }
 
     @Test
-    @DisplayName("✅ Все базовые методы PizzaSword существуют")
+    @DisplayName("✅ All basic PizzaSword methods exist")
     void testAllBasicMethodsExist() {
-        assertNotNull(PizzaSword.class, "Класс существует");
-        assertTrue(net.minecraft.world.item.SwordItem.class.isAssignableFrom(PizzaSword.class), "Наследуется от SwordItem");
+        assertNotNull(PizzaSword.class, "Class exists");
+        assertTrue(net.minecraft.world.item.SwordItem.class.isAssignableFrom(PizzaSword.class), "Extends SwordItem");
         
         try {
             PizzaSword.class.getMethod("hurtEnemy", 
@@ -119,7 +119,7 @@ class PizzaSwordTest {
                 net.minecraft.world.level.Level.class,
                 net.minecraft.world.entity.LivingEntity.class);
         } catch (NoSuchMethodException e) {
-            fail("Не все методы существуют: " + e.getMessage());
+            fail("Not all methods exist: " + e.getMessage());
         }
     }
 }

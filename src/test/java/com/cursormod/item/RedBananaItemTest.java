@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Тесты для RedBananaItem - красный банан (потому что желтые слишком скучные)
+ * Tests for RedBananaItem - a red banana (because yellow ones are too boring)
  * 🍌🔴🧪
  * 
- * NOTE: Да, красные бананы существуют в природе. Гуглите!
+ * NOTE: Yes, red bananas exist in nature. Google it!
  */
-@DisplayName("🍌 Тесты RedBananaItem")
+@DisplayName("🍌 RedBananaItem Tests")
 class RedBananaItemTest {
 
     @BeforeAll
@@ -24,50 +24,50 @@ class RedBananaItemTest {
     }
 
     @Test
-    @DisplayName("🍌 RedBananaItem класс должен существовать")
+    @DisplayName("🍌 RedBananaItem class should exist")
     void testRedBananaItemClassExists() {
         assertNotNull(RedBananaItem.class, 
-            "📦 Класс RedBananaItem должен существовать!");
+            "📦 RedBananaItem class should exist!");
     }
 
     @Test
-    @DisplayName("🆔 RedBananaItem должен быть Item")
+    @DisplayName("🆔 RedBananaItem should be an Item")
     void testRedBananaItemIsItem() {
         assertTrue(net.minecraft.world.item.Item.class.isAssignableFrom(RedBananaItem.class),
-            "🏷️ RedBananaItem должен наследоваться от Item!");
+            "🏷️ RedBananaItem should extend Item!");
     }
 
     @Test
-    @DisplayName("🍽️ RedBananaItem должен иметь метод finishUsingItem")
+    @DisplayName("🍽️ RedBananaItem should have finishUsingItem method")
     void testRedBananaItemHasFinishUsingItem() {
         try {
             var method = RedBananaItem.class.getMethod("finishUsingItem", 
                 net.minecraft.world.item.ItemStack.class,
                 net.minecraft.world.level.Level.class,
                 net.minecraft.world.entity.LivingEntity.class);
-            assertNotNull(method, "🍽️ RedBananaItem должен иметь метод finishUsingItem!");
+            assertNotNull(method, "🍽️ RedBananaItem should have finishUsingItem method!");
         } catch (NoSuchMethodException e) {
-            fail("🍽️ RedBananaItem должен иметь метод finishUsingItem!");
+            fail("🍽️ RedBananaItem should have finishUsingItem method!");
         }
     }
 
     @Test
-    @DisplayName("⏱️ RedBananaItem должен иметь метод getUseDuration")
+    @DisplayName("⏱️ RedBananaItem should have getUseDuration method")
     void testRedBananaItemHasGetUseDuration() {
         try {
             var method = RedBananaItem.class.getMethod("getUseDuration", 
                 net.minecraft.world.item.ItemStack.class);
-            assertNotNull(method, "⏱️ RedBananaItem должен иметь метод getUseDuration!");
+            assertNotNull(method, "⏱️ RedBananaItem should have getUseDuration method!");
         } catch (NoSuchMethodException e) {
-            fail("⏱️ RedBananaItem должен иметь метод getUseDuration!");
+            fail("⏱️ RedBananaItem should have getUseDuration method!");
         }
     }
 
     @Test
-    @DisplayName("✅ Все базовые методы RedBananaItem существуют")
+    @DisplayName("✅ All basic RedBananaItem methods exist")
     void testAllBasicMethodsExist() {
-        assertNotNull(RedBananaItem.class, "Класс существует");
-        assertTrue(net.minecraft.world.item.Item.class.isAssignableFrom(RedBananaItem.class), "Наследуется от Item");
+        assertNotNull(RedBananaItem.class, "Class exists");
+        assertTrue(net.minecraft.world.item.Item.class.isAssignableFrom(RedBananaItem.class), "Extends Item");
         
         try {
             RedBananaItem.class.getMethod("finishUsingItem", 
@@ -76,7 +76,7 @@ class RedBananaItemTest {
                 net.minecraft.world.entity.LivingEntity.class);
             RedBananaItem.class.getMethod("getUseDuration", net.minecraft.world.item.ItemStack.class);
         } catch (NoSuchMethodException e) {
-            fail("Не все методы существуют: " + e.getMessage());
+            fail("Not all methods exist: " + e.getMessage());
         }
     }
 }

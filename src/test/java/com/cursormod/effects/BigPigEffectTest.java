@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Тесты для BigPigEffect - эффект, который делает свиней большими и быстрыми
+ * Tests for BigPigEffect - an effect that makes pigs big and fast
  * 🐷💨🧪
  * 
- * NOTE: Полное тестирование эффектов требует создания полноценного Minecraft мира
+ * NOTE: Full testing of effects requires creating a complete Minecraft world
  */
-@DisplayName("🐷💨 Тесты BigPigEffect")
+@DisplayName("🐷💨 BigPigEffect Tests")
 class BigPigEffectTest {
 
     @BeforeAll
@@ -24,62 +24,62 @@ class BigPigEffectTest {
     }
 
     @Test
-    @DisplayName("🐷 BigPigEffect класс должен существовать")
+    @DisplayName("🐷 BigPigEffect class should exist")
     void testBigPigEffectClassExists() {
         assertNotNull(BigPigEffect.class, 
-            "📦 Класс BigPigEffect должен существовать!");
+            "📦 BigPigEffect class should exist!");
     }
 
     @Test
-    @DisplayName("🆔 BigPigEffect должен быть MobEffect")
+    @DisplayName("🆔 BigPigEffect should be a MobEffect")
     void testBigPigEffectIsMobEffect() {
         assertTrue(net.minecraft.world.effect.MobEffect.class.isAssignableFrom(BigPigEffect.class),
-            "🏷️ BigPigEffect должен наследоваться от MobEffect!");
+            "🏷️ BigPigEffect should extend MobEffect!");
     }
 
     @Test
-    @DisplayName("⚡ BigPigEffect должен иметь статическое поле BIG_PIG_EFFECT")
+    @DisplayName("⚡ BigPigEffect should have static field BIG_PIG_EFFECT")
     void testBigPigEffectHasStaticField() {
         try {
             var field = BigPigEffect.class.getField("BIG_PIG_EFFECT");
-            assertNotNull(field, "⚡ BigPigEffect должен иметь статическое поле BIG_PIG_EFFECT!");
+            assertNotNull(field, "⚡ BigPigEffect should have static field BIG_PIG_EFFECT!");
             assertTrue(net.minecraft.world.effect.MobEffect.class.isAssignableFrom(field.getType()),
-                "⚡ BIG_PIG_EFFECT должен быть типа MobEffect!");
+                "⚡ BIG_PIG_EFFECT should be of type MobEffect!");
         } catch (NoSuchFieldException e) {
-            fail("⚡ BigPigEffect должен иметь статическое поле BIG_PIG_EFFECT!");
+            fail("⚡ BigPigEffect should have static field BIG_PIG_EFFECT!");
         }
     }
 
     @Test
-    @DisplayName("🎯 BigPigEffect должен иметь метод applyEffectTick")
+    @DisplayName("🎯 BigPigEffect should have applyEffectTick method")
     void testBigPigEffectHasApplyEffectTick() {
         try {
             var method = BigPigEffect.class.getMethod("applyEffectTick", 
                 net.minecraft.world.entity.LivingEntity.class,
                 int.class);
-            assertNotNull(method, "🎯 BigPigEffect должен иметь метод applyEffectTick!");
+            assertNotNull(method, "🎯 BigPigEffect should have applyEffectTick method!");
         } catch (NoSuchMethodException e) {
-            fail("🎯 BigPigEffect должен иметь метод applyEffectTick!");
+            fail("🎯 BigPigEffect should have applyEffectTick method!");
         }
     }
 
     @Test
-    @DisplayName("⏱️ BigPigEffect должен иметь метод isDurationEffectTick")
+    @DisplayName("⏱️ BigPigEffect should have isDurationEffectTick method")
     void testBigPigEffectHasIsDurationEffectTick() {
         try {
             var method = BigPigEffect.class.getMethod("isDurationEffectTick", 
                 int.class, int.class);
-            assertNotNull(method, "⏱️ BigPigEffect должен иметь метод isDurationEffectTick!");
+            assertNotNull(method, "⏱️ BigPigEffect should have isDurationEffectTick method!");
         } catch (NoSuchMethodException e) {
-            fail("⏱️ BigPigEffect должен иметь метод isDurationEffectTick!");
+            fail("⏱️ BigPigEffect should have isDurationEffectTick method!");
         }
     }
 
     @Test
-    @DisplayName("✅ Все базовые методы BigPigEffect существуют")
+    @DisplayName("✅ All basic BigPigEffect methods exist")
     void testAllBasicMethodsExist() {
-        assertNotNull(BigPigEffect.class, "Класс существует");
-        assertTrue(net.minecraft.world.effect.MobEffect.class.isAssignableFrom(BigPigEffect.class), "Наследуется от MobEffect");
+        assertNotNull(BigPigEffect.class, "Class exists");
+        assertTrue(net.minecraft.world.effect.MobEffect.class.isAssignableFrom(BigPigEffect.class), "Extends MobEffect");
         
         try {
             BigPigEffect.class.getField("BIG_PIG_EFFECT");
@@ -87,7 +87,7 @@ class BigPigEffectTest {
                 net.minecraft.world.entity.LivingEntity.class, int.class);
             BigPigEffect.class.getMethod("isDurationEffectTick", int.class, int.class);
         } catch (NoSuchFieldException | NoSuchMethodException e) {
-            fail("Не все методы/поля существуют: " + e.getMessage());
+            fail("Not all methods/fields exist: " + e.getMessage());
         }
     }
 }

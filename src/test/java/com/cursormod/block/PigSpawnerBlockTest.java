@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Максимально простые тесты для Свиноматора-3000
+ * Simple tests for PigSpawner-3000
  * 🐷🏭🧪
  * 
- * NOTE: Полное тестирование Minecraft блоков требует интеграционных тестов
+ * NOTE: Full testing of Minecraft blocks requires integration tests
  */
-@DisplayName("🐷🏭 Тесты Свиноматора-3000")
+@DisplayName("🐷🏭 PigSpawner-3000 Tests")
 class PigSpawnerBlockTest {
 
     @BeforeAll
@@ -24,51 +24,51 @@ class PigSpawnerBlockTest {
     }
 
     @Test
-    @DisplayName("🐷 PigSpawnerBlock класс должен существовать")
+    @DisplayName("🐷 PigSpawnerBlock class should exist")
     void testPigSpawnerBlockClassExists() {
         assertNotNull(PigSpawnerBlock.class, 
-            "📦 Класс PigSpawnerBlock должен существовать!");
+            "📦 PigSpawnerBlock class should exist!");
     }
 
     @Test
-    @DisplayName("🔢 PigSpawnerBlock должен быть BaseEntityBlock")
+    @DisplayName("🔢 PigSpawnerBlock should be a BaseEntityBlock")
     void testIsBaseEntityBlock() {
         assertTrue(net.minecraft.world.level.block.BaseEntityBlock.class.isAssignableFrom(PigSpawnerBlock.class),
-            "🏗️ PigSpawnerBlock должен наследоваться от BaseEntityBlock!");
+            "🏗️ PigSpawnerBlock should extend BaseEntityBlock!");
     }
 
     @Test
-    @DisplayName("🏭 PigSpawnerBlock должен иметь метод newBlockEntity")
+    @DisplayName("🏭 PigSpawnerBlock should have newBlockEntity method")
     void testHasNewBlockEntity() {
         try {
             var method = PigSpawnerBlock.class.getMethod("newBlockEntity", 
                 net.minecraft.core.BlockPos.class, 
                 net.minecraft.world.level.block.state.BlockState.class);
-            assertNotNull(method, "🏭 PigSpawnerBlock должен иметь метод newBlockEntity!");
+            assertNotNull(method, "🏭 PigSpawnerBlock should have newBlockEntity method!");
         } catch (NoSuchMethodException e) {
-            fail("🏭 PigSpawnerBlock должен иметь метод newBlockEntity!");
+            fail("🏭 PigSpawnerBlock should have newBlockEntity method!");
         }
     }
 
     @Test
-    @DisplayName("🎯 PigSpawnerBlock должен иметь метод getTicker")
+    @DisplayName("🎯 PigSpawnerBlock should have getTicker method")
     void testHasGetTicker() {
         try {
             var method = PigSpawnerBlock.class.getMethod("getTicker", 
                 net.minecraft.world.level.Level.class,
                 net.minecraft.world.level.block.state.BlockState.class,
                 net.minecraft.world.level.block.entity.BlockEntityType.class);
-            assertNotNull(method, "🎯 PigSpawnerBlock должен иметь метод getTicker!");
+            assertNotNull(method, "🎯 PigSpawnerBlock should have getTicker method!");
         } catch (NoSuchMethodException e) {
-            fail("🎯 PigSpawnerBlock должен иметь метод getTicker!");
+            fail("🎯 PigSpawnerBlock should have getTicker method!");
         }
     }
 
     @Test
-    @DisplayName("✅ Все базовые методы PigSpawnerBlock существуют")
+    @DisplayName("✅ All basic PigSpawnerBlock methods exist")
     void testAllBasicMethodsExist() {
-        assertNotNull(PigSpawnerBlock.class, "Класс существует");
-        assertTrue(net.minecraft.world.level.block.BaseEntityBlock.class.isAssignableFrom(PigSpawnerBlock.class), "Наследуется от BaseEntityBlock");
+        assertNotNull(PigSpawnerBlock.class, "Class exists");
+        assertTrue(net.minecraft.world.level.block.BaseEntityBlock.class.isAssignableFrom(PigSpawnerBlock.class), "Extends BaseEntityBlock");
         
         try {
             PigSpawnerBlock.class.getMethod("newBlockEntity", 
@@ -79,7 +79,7 @@ class PigSpawnerBlockTest {
                 net.minecraft.world.level.block.state.BlockState.class,
                 net.minecraft.world.level.block.entity.BlockEntityType.class);
         } catch (NoSuchMethodException e) {
-            fail("Не все методы существуют: " + e.getMessage());
+            fail("Not all methods exist: " + e.getMessage());
         }
     }
 }

@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Тесты для DrunkEffect - эффект опьянения, который инвертирует управление
+ * Tests for DrunkEffect - intoxication effect that inverts controls
  * 🍺🎮🧪
  * 
- * NOTE: Тестирование в трезвом состоянии не гарантирует корректную работу в пьяном
+ * NOTE: Testing while sober doesn't guarantee correct behavior while drunk
  */
-@DisplayName("🍺🎮 Тесты DrunkEffect")
+@DisplayName("🍺🎮 DrunkEffect Tests")
 class DrunkEffectTest {
 
     @BeforeAll
@@ -24,62 +24,62 @@ class DrunkEffectTest {
     }
 
     @Test
-    @DisplayName("🍺 DrunkEffect класс должен существовать")
+    @DisplayName("🍺 DrunkEffect class should exist")
     void testDrunkEffectClassExists() {
         assertNotNull(DrunkEffect.class, 
-            "📦 Класс DrunkEffect должен существовать!");
+            "📦 DrunkEffect class should exist!");
     }
 
     @Test
-    @DisplayName("🆔 DrunkEffect должен быть MobEffect")
+    @DisplayName("🆔 DrunkEffect should be a MobEffect")
     void testDrunkEffectIsMobEffect() {
         assertTrue(net.minecraft.world.effect.MobEffect.class.isAssignableFrom(DrunkEffect.class),
-            "🏷️ DrunkEffect должен наследоваться от MobEffect!");
+            "🏷️ DrunkEffect should extend MobEffect!");
     }
 
     @Test
-    @DisplayName("⚡ DrunkEffect должен иметь статическое поле DRUNK_EFFECT")
+    @DisplayName("⚡ DrunkEffect should have static field DRUNK_EFFECT")
     void testDrunkEffectHasStaticField() {
         try {
             var field = DrunkEffect.class.getField("DRUNK_EFFECT");
-            assertNotNull(field, "⚡ DrunkEffect должен иметь статическое поле DRUNK_EFFECT!");
+            assertNotNull(field, "⚡ DrunkEffect should have static field DRUNK_EFFECT!");
             assertTrue(net.minecraft.world.effect.MobEffect.class.isAssignableFrom(field.getType()),
-                "⚡ DRUNK_EFFECT должен быть типа MobEffect!");
+                "⚡ DRUNK_EFFECT should be of type MobEffect!");
         } catch (NoSuchFieldException e) {
-            fail("⚡ DrunkEffect должен иметь статическое поле DRUNK_EFFECT!");
+            fail("⚡ DrunkEffect should have static field DRUNK_EFFECT!");
         }
     }
 
     @Test
-    @DisplayName("🎯 DrunkEffect должен иметь метод applyEffectTick")
+    @DisplayName("🎯 DrunkEffect should have applyEffectTick method")
     void testDrunkEffectHasApplyEffectTick() {
         try {
             var method = DrunkEffect.class.getMethod("applyEffectTick", 
                 net.minecraft.world.entity.LivingEntity.class,
                 int.class);
-            assertNotNull(method, "🎯 DrunkEffect должен иметь метод applyEffectTick!");
+            assertNotNull(method, "🎯 DrunkEffect should have applyEffectTick method!");
         } catch (NoSuchMethodException e) {
-            fail("🎯 DrunkEffect должен иметь метод applyEffectTick!");
+            fail("🎯 DrunkEffect should have applyEffectTick method!");
         }
     }
 
     @Test
-    @DisplayName("⏱️ DrunkEffect должен иметь метод isDurationEffectTick")
+    @DisplayName("⏱️ DrunkEffect should have isDurationEffectTick method")
     void testDrunkEffectHasIsDurationEffectTick() {
         try {
             var method = DrunkEffect.class.getMethod("isDurationEffectTick", 
                 int.class, int.class);
-            assertNotNull(method, "⏱️ DrunkEffect должен иметь метод isDurationEffectTick!");
+            assertNotNull(method, "⏱️ DrunkEffect should have isDurationEffectTick method!");
         } catch (NoSuchMethodException e) {
-            fail("⏱️ DrunkEffect должен иметь метод isDurationEffectTick!");
+            fail("⏱️ DrunkEffect should have isDurationEffectTick method!");
         }
     }
 
     @Test
-    @DisplayName("✅ Все базовые методы DrunkEffect существуют")
+    @DisplayName("✅ All basic DrunkEffect methods exist")
     void testAllBasicMethodsExist() {
-        assertNotNull(DrunkEffect.class, "Класс существует");
-        assertTrue(net.minecraft.world.effect.MobEffect.class.isAssignableFrom(DrunkEffect.class), "Наследуется от MobEffect");
+        assertNotNull(DrunkEffect.class, "Class exists");
+        assertTrue(net.minecraft.world.effect.MobEffect.class.isAssignableFrom(DrunkEffect.class), "Extends MobEffect");
         
         try {
             DrunkEffect.class.getField("DRUNK_EFFECT");
@@ -87,7 +87,7 @@ class DrunkEffectTest {
                 net.minecraft.world.entity.LivingEntity.class, int.class);
             DrunkEffect.class.getMethod("isDurationEffectTick", int.class, int.class);
         } catch (NoSuchFieldException | NoSuchMethodException e) {
-            fail("Не все методы/поля существуют: " + e.getMessage());
+            fail("Not all methods/fields exist: " + e.getMessage());
         }
     }
 }

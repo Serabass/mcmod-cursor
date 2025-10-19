@@ -12,12 +12,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Максимально простые тесты для BlockEntity Свиноматора-3000
+ * Simple tests for PigSpawner-3000 BlockEntity
  * ⚙️🐷
  * 
- * NOTE: Полное тестирование требует создания полноценного Minecraft мира
+ * NOTE: Full testing requires creating a complete Minecraft world
  */
-@DisplayName("⚙️ Тесты PigSpawnerBlockEntity")
+@DisplayName("⚙️ PigSpawnerBlockEntity Tests")
 class PigSpawnerBlockEntityTest {
 
     @BeforeAll
@@ -27,43 +27,43 @@ class PigSpawnerBlockEntityTest {
     }
 
     @Test
-    @DisplayName("🏗️ PigSpawnerBlockEntity класс должен существовать")
+    @DisplayName("🏗️ PigSpawnerBlockEntity class should exist")
     void testPigSpawnerBlockEntityClassExists() {
         assertNotNull(PigSpawnerBlockEntity.class, 
-            "⚙️ Класс PigSpawnerBlockEntity должен существовать!");
+            "⚙️ PigSpawnerBlockEntity class should exist!");
     }
 
     @Test
-    @DisplayName("🔢 PigSpawnerBlockEntity должен быть BlockEntity")
+    @DisplayName("🔢 PigSpawnerBlockEntity should be a BlockEntity")
     void testIsBlockEntity() {
         assertTrue(net.minecraft.world.level.block.entity.BlockEntity.class.isAssignableFrom(PigSpawnerBlockEntity.class),
-            "🏗️ PigSpawnerBlockEntity должен наследоваться от BlockEntity!");
+            "🏗️ PigSpawnerBlockEntity should extend BlockEntity!");
     }
 
     @Test
-    @DisplayName("💾 PigSpawnerBlockEntity должен иметь метод saveAdditional")
+    @DisplayName("💾 PigSpawnerBlockEntity should have saveAdditional method")
     void testHasSaveAdditional() {
         try {
             var method = PigSpawnerBlockEntity.class.getDeclaredMethod("saveAdditional", CompoundTag.class);
-            assertNotNull(method, "💾 PigSpawnerBlockEntity должен иметь метод saveAdditional!");
+            assertNotNull(method, "💾 PigSpawnerBlockEntity should have saveAdditional method!");
         } catch (NoSuchMethodException e) {
-            fail("💾 PigSpawnerBlockEntity должен иметь метод saveAdditional!");
+            fail("💾 PigSpawnerBlockEntity should have saveAdditional method!");
         }
     }
 
     @Test
-    @DisplayName("📖 PigSpawnerBlockEntity должен иметь метод load")
+    @DisplayName("📖 PigSpawnerBlockEntity should have load method")
     void testHasLoad() {
         try {
             var method = PigSpawnerBlockEntity.class.getMethod("load", CompoundTag.class);
-            assertNotNull(method, "📖 PigSpawnerBlockEntity должен иметь метод load!");
+            assertNotNull(method, "📖 PigSpawnerBlockEntity should have load method!");
         } catch (NoSuchMethodException e) {
-            fail("📖 PigSpawnerBlockEntity должен иметь метод load!");
+            fail("📖 PigSpawnerBlockEntity should have load method!");
         }
     }
 
     @Test
-    @DisplayName("⏱️ PigSpawnerBlockEntity должен иметь метод tick")
+    @DisplayName("⏱️ PigSpawnerBlockEntity should have tick method")
     void testHasTick() {
         try {
             var method = PigSpawnerBlockEntity.class.getMethod("tick", 
@@ -71,17 +71,17 @@ class PigSpawnerBlockEntityTest {
                 net.minecraft.core.BlockPos.class,
                 net.minecraft.world.level.block.state.BlockState.class,
                 PigSpawnerBlockEntity.class);
-            assertNotNull(method, "⏱️ PigSpawnerBlockEntity должен иметь метод tick!");
+            assertNotNull(method, "⏱️ PigSpawnerBlockEntity should have tick method!");
         } catch (NoSuchMethodException e) {
-            fail("⏱️ PigSpawnerBlockEntity должен иметь метод tick!");
+            fail("⏱️ PigSpawnerBlockEntity should have tick method!");
         }
     }
 
     @Test
-    @DisplayName("✅ Все базовые методы PigSpawnerBlockEntity существуют")
+    @DisplayName("✅ All basic PigSpawnerBlockEntity methods exist")
     void testAllBasicMethodsExist() {
-        assertNotNull(PigSpawnerBlockEntity.class, "Класс существует");
-        assertTrue(net.minecraft.world.level.block.entity.BlockEntity.class.isAssignableFrom(PigSpawnerBlockEntity.class), "Наследуется от BlockEntity");
+        assertNotNull(PigSpawnerBlockEntity.class, "Class exists");
+        assertTrue(net.minecraft.world.level.block.entity.BlockEntity.class.isAssignableFrom(PigSpawnerBlockEntity.class), "Extends BlockEntity");
         
         try {
             PigSpawnerBlockEntity.class.getDeclaredMethod("saveAdditional", CompoundTag.class);
@@ -92,7 +92,7 @@ class PigSpawnerBlockEntityTest {
                 net.minecraft.world.level.block.state.BlockState.class,
                 PigSpawnerBlockEntity.class);
         } catch (NoSuchMethodException e) {
-            fail("Не все методы существуют: " + e.getMessage());
+            fail("Not all methods exist: " + e.getMessage());
         }
     }
 }

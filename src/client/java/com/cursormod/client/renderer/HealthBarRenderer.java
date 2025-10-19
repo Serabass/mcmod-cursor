@@ -19,7 +19,7 @@ public class HealthBarRenderer {
     private static final float BAR_WIDTH = 0.5f;
     private static final float BAR_HEIGHT = 0.08f;
     private static final float BAR_Y_OFFSET = 0.5f;
-    private static final double MAX_RENDER_DISTANCE = 32.0; // Не будем показывать за 32 блока
+    private static final double MAX_RENDER_DISTANCE = 5.0; // Не будем показывать за 20 блоков
     
     /**
      * Регистрирует рендерер в системе событий Fabric
