@@ -23,12 +23,31 @@ public class ExplodingPig extends Pig {
     
     private int ticksUntilExplosion;
     private boolean isExploding = false;
+    private boolean hasSpawnedPiglets = false; // Флаг, чтобы не спавнить поросят дважды
+    private int ticksAlive = 0; // Счётчик времени жизни свиньи
     
     public ExplodingPig(EntityType<? extends Pig> entityType, Level level) {
         super(entityType, level);
         // Рандомное время до взрыва от 2 до 10 секунд (40-200 тиков)
         this.ticksUntilExplosion = 40 + level.random.nextInt(161);
+        
+        // Включаем режим паники - свинья будет бегать как ненормальная!
+        this.brain.setMemoryWithExpiry(
+            net.minecraft.world.entity.ai.memory.MemoryModuleType.IS_PANICKING, 
+            true, 
+            (long)ticksUntilExplosion
+        );
+        
         Cursor.LOGGER.info("🐷💣 ExplodingPig created! Will explode in {} ticks!", ticksUntilExplosion);
+    }
+    
+    // Конструктор для поросят (без спавна новых поросят)
+    public ExplodingPig(EntityType<? extends Pig> entityType, Level level, boolean isPiglet) {
+        this(entityType, level);
+        this.hasSpawnedPiglets = true; // Поросята не спавнят своих поросят
+        if (isPiglet) {
+            this.setBaby(true); // Делаем маленьким
+        }
     }
     
     @Override
@@ -43,18 +62,15 @@ public class ExplodingPig extends Pig {
         
         if (!this.level().isClientSide() && !isExploding) {
             ticksUntilExplosion--;
+            ticksAlive++; // Увеличиваем счётчик времени жизни
             
             // Обновляем синхронизированные данные для клиента
             this.entityData.set(FUSE_TIME, ticksUntilExplosion);
             
-            // Свинья бегает как ненормальная - увеличиваем скорость
-            if (this.onGround()) {
-                // Случайное направление движения
-                if (this.random.nextInt(10) == 0) {
-                    double randomX = (this.random.nextDouble() - 0.5) * 2.0;
-                    double randomZ = (this.random.nextDouble() - 0.5) * 2.0;
-                    this.setDeltaMovement(randomX, 0.5, randomZ);
-                }
+            // Спавним поросят через 40 тиков (2 секунды) после создания
+            if (!hasSpawnedPiglets && ticksAlive >= 40) {
+                spawnPiglets();
+                hasSpawnedPiglets = true;
             }
             
             // Создаем частицы дыма когда близко к взрыву
@@ -82,6 +98,52 @@ public class ExplodingPig extends Pig {
                     this.getY() + this.random.nextDouble() * 0.5,
                     this.getZ() + (this.random.nextDouble() - 0.5) * 0.5,
                     0, 0, 0);
+            }
+        }
+    }
+    
+    private void spawnPiglets() {
+        // 50% шанс спавна поросят
+        if (this.random.nextBoolean()) {
+            int pigletCount = 3 + this.random.nextInt(5); // От 3 до 7 поросят
+            
+            Cursor.LOGGER.info("🐷👶 ExplodingPig spawning {} piglets!", pigletCount);
+            
+            for (int i = 0; i < pigletCount; i++) {
+                // Создаем поросенка
+                ExplodingPig piglet = new ExplodingPig(ModEntities.EXPLODING_PIG, this.level(), true);
+                
+                // Позиция рядом со свиньей-мамой
+                double offsetX = (this.random.nextDouble() - 0.5) * 2.0;
+                double offsetZ = (this.random.nextDouble() - 0.5) * 2.0;
+                piglet.setPos(
+                    this.getX() + offsetX,
+                    this.getY(),
+                    this.getZ() + offsetZ
+                );
+                
+                // Даем поросенку начальную скорость (разбегаются в стороны)
+                piglet.setDeltaMovement(
+                    offsetX * 0.3,
+                    0.3,
+                    offsetZ * 0.3
+                );
+                
+                // Добавляем в мир
+                this.level().addFreshEntity(piglet);
+                
+                // Звук свиньи
+                piglet.playSound(net.minecraft.sounds.SoundEvents.PIG_AMBIENT, 1.0F, 1.5F);
+            }
+            
+            // Звук свиньи-мамы
+            this.playSound(net.minecraft.sounds.SoundEvents.PIG_AMBIENT, 1.5F, 0.8F);
+            
+            // Создаем частицы сердечек (как при размножении)
+            if (this.level() instanceof ServerLevel serverLevel) {
+                serverLevel.sendParticles(ParticleTypes.HEART, 
+                    this.getX(), this.getY() + 1.0, this.getZ(), 
+                    10, 0.5, 0.5, 0.5, 0.1);
             }
         }
     }

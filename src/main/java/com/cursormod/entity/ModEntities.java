@@ -36,7 +36,8 @@ public class ModEntities {
     public static final EntityType<ExplodingPig> EXPLODING_PIG = Registry.register(
         BuiltInRegistries.ENTITY_TYPE,
         new ResourceLocation(Cursor.MOD_ID, "exploding_pig"),
-        FabricEntityTypeBuilder.create(MobCategory.CREATURE, ExplodingPig::new)
+        FabricEntityTypeBuilder.create(MobCategory.CREATURE, (EntityType<ExplodingPig> entityType, Level level) -> 
+            new ExplodingPig(entityType, level))
             .dimensions(EntityDimensions.fixed(0.9f, 0.9f))
             .build()
     );
