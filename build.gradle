@@ -83,6 +83,7 @@ test {
 // Настройка JaCoCo - измеряем покрытие кода тестами! 📊
 jacoco {
 	toolVersion = "0.8.11"
+	reportsDirectory = layout.buildDirectory.dir("reports/jacoco")
 }
 // 
 jacocoTestReport {

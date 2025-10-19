@@ -1,0 +1,34 @@
+# Dockerfile для тестирования Minecraft мода
+# Используем OpenJDK 21 для совместимости с Fabric Loom
+FROM openjdk:21-jdk-slim
+
+# Устанавливаем необходимые пакеты
+RUN apt-get update && apt-get install -y \
+    wget \
+    unzip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Создаем рабочую директорию
+WORKDIR /app
+
+# Копируем Gradle wrapper и конфигурацию
+COPY gradlew gradlew.bat ./
+COPY gradle/ gradle/
+COPY build.gradle settings.gradle gradle.properties ./
+
+# Копируем исходный код
+COPY src/ src/
+
+# Даем права на выполнение gradlew
+RUN chmod +x gradlew
+
+# Создаем пользователя для запуска тестов
+RUN useradd -m -s /bin/bash testuser && chown -R testuser:testuser /app
+USER testuser
+
+# Устанавливаем переменные окружения для тестов
+ENV GRADLE_OPTS="-Xmx2g -XX:MaxMetaspaceSize=512m"
+ENV JAVA_OPTS="-Xmx2g -XX:MaxMetaspaceSize=512m"
+
+# Команда по умолчанию - запуск тестов
+CMD ["./gradlew", "clean", "test", "jacocoTestReport"]

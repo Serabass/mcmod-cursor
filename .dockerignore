@@ -1,0 +1,36 @@
+# Игнорируем ненужные файлы при сборке Docker образа
+build/
+run/
+logs/
+.gradle/
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.cursor/
+
+# Git
+.git/
+.gitignore
+
+# Документация
+*.md
+!README.md
+
+# Временные файлы
+*.tmp
+*.temp
+*.log
+
+# OS файлы
+.DS_Store
+Thumbs.db
+
+# Docker файлы
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Тестовые отчеты (будут созданы в контейнере)
+test-reports/

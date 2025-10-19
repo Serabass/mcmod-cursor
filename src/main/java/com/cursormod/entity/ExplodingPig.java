@@ -15,6 +15,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.BlockPos;
 
 public class ExplodingPig extends Pig {
     
@@ -212,9 +214,77 @@ public class ExplodingPig extends Pig {
                     50, 1.0, 1.0, 1.0, 0.2);
             }
             
+            // Создаем огонь после взрыва! 🔥
+            createFireAfterExplosion();
+            
             // Удаляем свинью
             this.discard();
         }
+    }
+    
+    /**
+     * Создает огонь после взрыва свиньи! 🔥
+     * Иногда оставляет огонь в радиусе взрыва для дополнительного хаоса!
+     */
+    private void createFireAfterExplosion() {
+        if (!(this.level() instanceof ServerLevel serverLevel)) {
+            return;
+        }
+        
+        // Шанс создать огонь зависит от поколения свиньи
+        // Поколение 0 (мама): 30% шанс
+        // Поколение 1 (поросенок): 50% шанс  
+        // Поколение 2+ (поросенок поросенка): 70% шанс
+        float fireChance = 0.3f + (generation * 0.2f);
+        fireChance = Math.min(fireChance, 0.7f); // Максимум 70%
+        
+        if (this.random.nextFloat() < fireChance) {
+            Cursor.LOGGER.info("🔥 ExplodingPig generation {} left fire behind! Chaos level: {}%", 
+                generation, (int)(fireChance * 100));
+            
+            // Количество огня зависит от поколения
+            // Поколение 0: 1-3 блока огня
+            // Поколение 1: 2-4 блока огня
+            // Поколение 2+: 3-6 блоков огня
+            int minFire = 1 + generation;
+            int maxFire = 3 + (generation * 2);
+            int fireBlocks = minFire + this.random.nextInt(maxFire - minFire + 1);
+            
+            for (int i = 0; i < fireBlocks; i++) {
+                // Выбираем случайную позицию в радиусе 3 блоков от взрыва
+                int offsetX = this.random.nextInt(7) - 3; // -3 до +3
+                int offsetZ = this.random.nextInt(7) - 3; // -3 до +3
+                
+                BlockPos firePos = this.blockPosition().offset(offsetX, 0, offsetZ);
+                
+                // Проверяем, можно ли поставить огонь в эту позицию
+                if (canPlaceFireAt(firePos)) {
+                    // Ставим огонь!
+                    serverLevel.setBlock(firePos, Blocks.FIRE.defaultBlockState(), 3);
+                    
+                    // Создаем частицы огня
+                    serverLevel.sendParticles(ParticleTypes.FLAME, 
+                        firePos.getX() + 0.5, firePos.getY() + 0.5, firePos.getZ() + 0.5, 
+                        10, 0.2, 0.2, 0.2, 0.1);
+                    
+                    Cursor.LOGGER.info("🔥 Fire placed at {}", firePos);
+                }
+            }
+        }
+    }
+    
+    /**
+     * Проверяет, можно ли поставить огонь в указанной позиции
+     */
+    private boolean canPlaceFireAt(BlockPos pos) {
+        // Проверяем, что блок в этой позиции можно заменить огнем
+        if (!this.level().getBlockState(pos).isAir()) {
+            return false;
+        }
+        
+        // Проверяем, что под огнем есть твердый блок
+        BlockPos belowPos = pos.below();
+        return this.level().getBlockState(belowPos).isSolidRender(this.level(), belowPos);
     }
     
     @Override
