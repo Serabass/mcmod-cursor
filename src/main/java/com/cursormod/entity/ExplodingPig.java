@@ -25,6 +25,7 @@ public class ExplodingPig extends Pig {
     private boolean isExploding = false;
     private boolean hasSpawnedPiglets = false; // Флаг, чтобы не спавнить поросят дважды
     private int ticksAlive = 0; // Счётчик времени жизни свиньи
+    private int generation = 0; // Поколение свиньи (0 - мама, 1 - поросёнок, 2 - поросёнок поросёнка)
     
     public ExplodingPig(EntityType<? extends Pig> entityType, Level level) {
         super(entityType, level);
@@ -41,13 +42,12 @@ public class ExplodingPig extends Pig {
         Cursor.LOGGER.info("🐷💣 ExplodingPig created! Will explode in {} ticks!", ticksUntilExplosion);
     }
     
-    // Конструктор для поросят (без спавна новых поросят)
-    public ExplodingPig(EntityType<? extends Pig> entityType, Level level, boolean isPiglet) {
+    // Конструктор для поросят с указанием поколения
+    public ExplodingPig(EntityType<? extends Pig> entityType, Level level, int generation) {
         this(entityType, level);
-        this.hasSpawnedPiglets = true; // Поросята не спавнят своих поросят
-        if (isPiglet) {
-            this.setBaby(true); // Делаем маленьким
-        }
+        this.generation = generation;
+        this.setBaby(true); // Делаем маленьким
+        Cursor.LOGGER.info("🐖💣 ExplodingPig generation {} created!", generation);
     }
     
     @Override
@@ -103,15 +103,31 @@ public class ExplodingPig extends Pig {
     }
     
     private void spawnPiglets() {
-        // 50% шанс спавна поросят
-        if (this.random.nextBoolean()) {
-            int pigletCount = 3 + this.random.nextInt(5); // От 3 до 7 поросят
-            
-            Cursor.LOGGER.info("🐷👶 ExplodingPig spawning {} piglets!", pigletCount);
+        // Определяем количество поросят в зависимости от поколения
+        int pigletCount = 0;
+        boolean shouldSpawn = false;
+        
+        if (generation == 0) {
+            // Свинья-мама: 50% шанс спавна 3-7 поросят
+            if (this.random.nextBoolean()) {
+                pigletCount = 3 + this.random.nextInt(5);
+                shouldSpawn = true;
+            }
+        } else if (generation == 1) {
+            // Поросёнок: 30% шанс спавна 1-2 маленьких поросят
+            if (this.random.nextFloat() < 0.3f) {
+                pigletCount = 1 + this.random.nextInt(2);
+                shouldSpawn = true;
+            }
+        }
+        // generation >= 2 не спавнят поросят (ограничение глубины)
+        
+        if (shouldSpawn && pigletCount > 0) {
+            Cursor.LOGGER.info("🐷👶 ExplodingPig generation {} spawning {} piglets!", generation, pigletCount);
             
             for (int i = 0; i < pigletCount; i++) {
-                // Создаем поросенка
-                ExplodingPig piglet = new ExplodingPig(ModEntities.EXPLODING_PIG, this.level(), true);
+                // Создаем поросенка следующего поколения
+                ExplodingPig piglet = new ExplodingPig(ModEntities.EXPLODING_PIG, this.level(), generation + 1);
                 
                 // Позиция рядом со свиньей-мамой
                 double offsetX = (this.random.nextDouble() - 0.5) * 2.0;
@@ -132,18 +148,19 @@ public class ExplodingPig extends Pig {
                 // Добавляем в мир
                 this.level().addFreshEntity(piglet);
                 
-                // Звук свиньи
-                piglet.playSound(net.minecraft.sounds.SoundEvents.PIG_AMBIENT, 1.0F, 1.5F);
+                // Звук свиньи (выше тон для поросят)
+                float pitch = 1.5F + (generation * 0.3F); // Чем меньше поросёнок, тем выше голос
+                piglet.playSound(net.minecraft.sounds.SoundEvents.PIG_AMBIENT, 1.0F, pitch);
             }
             
-            // Звук свиньи-мамы
-            this.playSound(net.minecraft.sounds.SoundEvents.PIG_AMBIENT, 1.5F, 0.8F);
+            // Звук свиньи-родителя
+            this.playSound(net.minecraft.sounds.SoundEvents.PIG_AMBIENT, 1.5F, 0.8F + (generation * 0.2F));
             
             // Создаем частицы сердечек (как при размножении)
             if (this.level() instanceof ServerLevel serverLevel) {
                 serverLevel.sendParticles(ParticleTypes.HEART, 
-                    this.getX(), this.getY() + 1.0, this.getZ(), 
-                    10, 0.5, 0.5, 0.5, 0.1);
+                    this.getX(), this.getY() + 0.5 + (generation * 0.2), this.getZ(), 
+                    5 + (3 - generation) * 2, 0.5, 0.5, 0.5, 0.1);
             }
         }
     }
