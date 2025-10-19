@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "cursor-test",
+  "version": "1.0.0-test",
+  "name": "Cursor Mod Tests",
+  "description": "Test suite for Cursor Mod - потому что даже хаос нужно тестировать!",
+  "environment": "*",
+  "entrypoints": {},
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "minecraft": "~1.20.4",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
