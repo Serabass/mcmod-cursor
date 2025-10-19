@@ -43,6 +43,12 @@ public class ModItems {
         new LaserGun(new FabricItemSettings()
             .durability(100) // 100 выстрелов
         ));
+    
+    // Морковная пушка - стреляет морковками
+    public static final Item CARROT_CANNON = registerItem("carrot_cannon",
+        new CarrotCannon(new FabricItemSettings()
+            .durability(200) // 200 выстрелов
+        ));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(Cursor.MOD_ID, name), item);

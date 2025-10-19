@@ -23,6 +23,7 @@ public class ModItemGroups {
                        entries.accept(ModItems.PIZZA_SWORD);
                        entries.accept(ModItems.VODKA);
                        entries.accept(ModItems.LASER_GUN);
+                       entries.accept(ModItems.CARROT_CANNON);
                    })
             .build()
     );

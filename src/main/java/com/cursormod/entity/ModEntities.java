@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.Level;
 
 public class ModEntities {
     
@@ -21,6 +22,16 @@ public class ModEntities {
             .build()
     );
     
+    // Регистрируем снаряд морковки
+    public static final EntityType<CarrotProjectile> CARROT_PROJECTILE = Registry.register(
+        BuiltInRegistries.ENTITY_TYPE,
+        new ResourceLocation(Cursor.MOD_ID, "carrot_projectile"),
+        FabricEntityTypeBuilder.create(MobCategory.MISC, (EntityType<CarrotProjectile> entityType, Level level) -> 
+            new CarrotProjectile(entityType, level))
+            .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
+            .build()
+    );
+    
     public static void registerModEntities() {
         Cursor.LOGGER.info("🔷 Registering Mod Entities for " + Cursor.MOD_ID);
         
@@ -28,5 +39,6 @@ public class ModEntities {
         FabricDefaultAttributeRegistry.register(CUBE_MOB, CubeMob.createAttributes());
         
         Cursor.LOGGER.info("🔷 CUBE_MOB registered with ID: cursor:cube_mob");
+        Cursor.LOGGER.info("🥕 CARROT_PROJECTILE registered with ID: cursor:carrot_projectile");
     }
 }

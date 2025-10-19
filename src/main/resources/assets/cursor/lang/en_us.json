@@ -4,7 +4,9 @@
   "item.cursor.pizza_sword": "Pizza Sword",
   "item.cursor.vodka": "Vodka",
   "item.cursor.laser_gun": "Laser Gun",
+  "item.cursor.carrot_cannon": "Carrot Cannon",
   "entity.cursor.cube_mob": "Cube Mob",
+  "entity.cursor.carrot_projectile": "Carrot Projectile",
   "itemGroup.cursor.cursor_group": "Cursor Mod",
   "effect.cursor.drunk": "Drunk",
   "effect.cursor.big_pig": "Big Pig"

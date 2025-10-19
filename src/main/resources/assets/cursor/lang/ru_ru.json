@@ -4,7 +4,9 @@
   "item.cursor.pizza_sword": "Пицца-меч",
   "item.cursor.vodka": "Водка",
   "item.cursor.laser_gun": "Лазерная пушка",
+  "item.cursor.carrot_cannon": "Морковная пушка",
   "entity.cursor.cube_mob": "Кубический моб",
+  "entity.cursor.carrot_projectile": "Снаряд морковки",
   "itemGroup.cursor.cursor_group": "Мод Cursor",
   "effect.cursor.drunk": "Пьянство",
   "effect.cursor.big_pig": "Большая свинья"
