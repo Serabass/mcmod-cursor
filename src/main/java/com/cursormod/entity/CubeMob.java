@@ -13,15 +13,27 @@ import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.phys.AABB;
 
 public class CubeMob extends PathfinderMob {
     
+    private float scale = 1.0f; // Текущий масштаб моба
+    
     public CubeMob(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
-        Cursor.LOGGER.info("🔷 CubeMob created! A new cubic friend has spawned!");
+        
+        // Устанавливаем начальный размер (100%)
+        this.scale = 1.0f;
+        
+        Cursor.LOGGER.info("🔷 CubeMob created! A new cubic friend has spawned! Size: {:.2f}", this.scale);
     }
     
     public static AttributeSupplier.Builder createAttributes() {
@@ -33,17 +45,17 @@ public class CubeMob extends PathfinderMob {
     
     @Override
     protected void registerGoals() {
-        // Плавание в воде
-        this.goalSelector.addGoal(0, new FloatGoal(this));
+        // НЕ плаваем в воде - боимся её!
+        // this.goalSelector.addGoal(0, new FloatGoal(this));
         
-        // Случайное блуждание по суше
-        this.goalSelector.addGoal(1, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        // Избегаем воды как чумы!
+        this.goalSelector.addGoal(0, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         
-        // Случайное блуждание в воде
-        this.goalSelector.addGoal(2, new RandomStrollGoal(this, 1.0D));
+        // Случайное блуждание только по суше
+        this.goalSelector.addGoal(1, new RandomStrollGoal(this, 1.0D));
         
         // Смотреть на игрока
-        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 8.0F));
     }
     
     @Override
@@ -67,13 +79,56 @@ public class CubeMob extends PathfinderMob {
     }
     
     @Override
+    public boolean hurt(DamageSource source, float amount) {
+        boolean hurt = super.hurt(source, amount);
+        
+        if (hurt) {
+            // Обновляем размер после получения урона
+            updateSize();
+            
+            Cursor.LOGGER.info("🔷 CubeMob hurt! New size: {:.2f} (Health: {}/{})", 
+                getScale(), (int)this.getHealth(), (int)this.getMaxHealth());
+        }
+        
+        return hurt;
+    }
+    
+    private void updateSize() {
+        float healthPercent = this.getHealth() / this.getMaxHealth();
+        this.scale = 0.1f + (healthPercent * 0.9f); // От 10% до 100%
+        
+        Cursor.LOGGER.info("🔷 CubeMob resized to {:.2f} (Health: {:.1f}%)", 
+            this.scale, healthPercent * 100);
+    }
+    
+    public float getScale() {
+        return this.scale;
+    }
+    
+    @Override
+    public EntityDimensions getDimensions(Pose pose) {
+        EntityDimensions baseDimensions = super.getDimensions(pose);
+        return baseDimensions.scale(this.scale);
+    }
+    
+    @Override
     public void tick() {
         super.tick();
         
+        // Проверяем, не в воде ли мы
+        if (this.isInWater()) {
+            Cursor.LOGGER.warn("💀 CubeMob at {} is in WATER! This is terrifying! Health: {}/{}", 
+                this.blockPosition(), (int)this.getHealth(), (int)this.getMaxHealth());
+            
+            // Убиваем моба, если он в воде
+            this.hurt(this.damageSources().drown(), 1000.0f);
+            Cursor.LOGGER.error("💀 CubeMob died from water fear! RIP cubic friend...");
+        }
+        
         // Логируем каждые 100 тиков (5 секунд) для отладки
         if (this.tickCount % 100 == 0) {
-            Cursor.LOGGER.info("🔷 CubeMob at {} is alive! Health: {}/{}", 
-                this.blockPosition(), (int)this.getHealth(), (int)this.getMaxHealth());
+            Cursor.LOGGER.info("🔷 CubeMob at {} is alive! Health: {}/{} Size: {:.2f}", 
+                this.blockPosition(), (int)this.getHealth(), (int)this.getMaxHealth(), getScale());
         }
     }
 }
