@@ -2,7 +2,9 @@ package com.cursormod.item;
 
 import com.cursormod.Cursor;
 import com.cursormod.effects.DrunkEffect;
+import com.cursormod.effects.FlyingPigEffect;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -60,6 +62,30 @@ public class VodkaItem extends Item {
                     return new ItemStack(Items.GLASS_BOTTLE);
                 }
                 player.getInventory().add(new ItemStack(Items.GLASS_BOTTLE));
+            }
+        } else if (user instanceof Pig pig) {
+            Cursor.LOGGER.info("🐷 Pig {} drank vodka! It's growing wings!", 
+                pig.getName().getString());
+            
+            // Добавляем эффект летающей свиньи на 60 секунд (1200 тиков)
+            pig.addEffect(new MobEffectInstance(FlyingPigEffect.FLYING_PIG_EFFECT, 1200, 0));
+            
+            // Создаем магические частицы
+            if (world instanceof ServerLevel serverLevel) {
+                Vec3 pos = pig.position();
+                serverLevel.sendParticles(ParticleTypes.ENCHANT, 
+                    pos.x, pos.y + 1.0, pos.z, 20, 0.5, 0.5, 0.5, 0.1);
+                serverLevel.sendParticles(ParticleTypes.CLOUD, 
+                    pos.x, pos.y + 1.0, pos.z, 10, 0.3, 0.3, 0.3, 0.05);
+            }
+            
+            // Играем звук свиньи
+            pig.playSound(SoundEvents.PIG_AMBIENT, 1.0F, 1.2F);
+            world.gameEvent(user, GameEvent.EAT, user.position());
+            
+            // Возвращаем пустую бутылку
+            if (stack.isEmpty()) {
+                return new ItemStack(Items.GLASS_BOTTLE);
             }
         }
         

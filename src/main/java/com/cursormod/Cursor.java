@@ -5,6 +5,7 @@ import com.cursormod.item.ModItemGroups;
 import com.cursormod.entity.ModEntities;
 import com.cursormod.events.ServerTickHandler;
 import com.cursormod.effects.DrunkEffect;
+import com.cursormod.effects.FlyingPigEffect;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -40,5 +41,6 @@ public class Cursor implements ModInitializer {
         
         // Регистрируем эффекты мода
         DrunkEffect.DRUNK_EFFECT.toString(); // Инициализируем эффект
+        FlyingPigEffect.FLYING_PIG_EFFECT.toString(); // Инициализируем эффект летающей свиньи
 	}
 }
