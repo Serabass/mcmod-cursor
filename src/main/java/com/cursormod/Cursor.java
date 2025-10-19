@@ -4,6 +4,7 @@ import com.cursormod.item.ModItems;
 import com.cursormod.item.ModItemGroups;
 import com.cursormod.entity.ModEntities;
 import com.cursormod.events.ServerTickHandler;
+import com.cursormod.effects.DrunkEffect;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -34,7 +35,10 @@ public class Cursor implements ModInitializer {
 		// Регистрируем сущности мода
 		ModEntities.registerModEntities();
 		
-		// Регистрируем обработчик событий сервера
-		ServerTickHandler.register();
+        // Регистрируем обработчик событий сервера
+        ServerTickHandler.register();
+        
+        // Регистрируем эффекты мода
+        DrunkEffect.DRUNK_EFFECT.toString(); // Инициализируем эффект
 	}
 }

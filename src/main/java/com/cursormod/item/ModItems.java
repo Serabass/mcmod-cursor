@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Tiers;
 
 public class ModItems {
     
@@ -23,6 +24,19 @@ public class ModItems {
     // Яйцо призыва кубического моба
     public static final Item CUBE_MOB_SPAWN_EGG = registerItem("cube_mob_spawn_egg",
         new CubeMobSpawnEgg());
+    
+    // Пицца-меч - восстанавливает голод при ударе и использовании
+    public static final Item PIZZA_SWORD = registerItem("pizza_sword",
+        new PizzaSword(Tiers.IRON, 3, -2.4f, new FabricItemSettings()));
+    
+    // Водка - инвертирует управление
+    public static final Item VODKA = registerItem("vodka",
+        new VodkaItem(new FabricItemSettings()
+            .food(new FoodProperties.Builder()
+                .nutrition(4)
+                .saturationMod(0.8f)
+                .build())
+        ));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(Cursor.MOD_ID, name), item);

@@ -17,10 +17,12 @@ public class ModItemGroups {
         FabricItemGroup.builder()
             .title(Component.translatable("itemGroup.cursor.cursor_group"))
             .icon(() -> new ItemStack(ModItems.RED_BANANA))
-            .displayItems((context, entries) -> {
-                entries.accept(ModItems.RED_BANANA);
-                entries.accept(ModItems.CUBE_MOB_SPAWN_EGG);
-            })
+                   .displayItems((context, entries) -> {
+                       entries.accept(ModItems.RED_BANANA);
+                       entries.accept(ModItems.CUBE_MOB_SPAWN_EGG);
+                       entries.accept(ModItems.PIZZA_SWORD);
+                       entries.accept(ModItems.VODKA);
+                   })
             .build()
     );
     
