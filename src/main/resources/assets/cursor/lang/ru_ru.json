@@ -6,6 +6,8 @@
   "item.cursor.laser_gun": "Лазерная пушка",
   "item.cursor.carrot_cannon": "Морковная пушка",
   "item.cursor.chicken_gun": "Свиная пушка",
+  "item.cursor.disappointment_bucket": "Ведро с жидким разочарованием",
+  "block.cursor.disappointment_block": "Жидкое разочарование",
   "entity.cursor.cube_mob": "Кубический моб",
   "entity.cursor.carrot_projectile": "Снаряд морковки",
   "entity.cursor.exploding_pig": "Взрывающаяся свинья",

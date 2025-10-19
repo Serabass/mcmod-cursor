@@ -1,5 +1,7 @@
 package com.cursormod;
 
+import com.cursormod.block.ModBlocks;
+import com.cursormod.fluid.ModFluids;
 import com.cursormod.item.ModItems;
 import com.cursormod.item.ModItemGroups;
 import com.cursormod.entity.ModEntities;
@@ -27,6 +29,13 @@ public class Cursor implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Hello Fabric world!");
+		
+		// Регистрируем жидкости мода (должно быть первым!)
+		ModFluids.registerModFluids();
+		
+		// Теперь регистрируем блок жидкости
+		ModBlocks.registerDisappointmentBlock(() -> ModFluids.DISAPPOINTMENT);
+		ModBlocks.registerModBlocks();
 		
 		// Регистрируем предметы мода
 		ModItems.registerModItems();

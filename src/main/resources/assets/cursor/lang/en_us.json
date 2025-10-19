@@ -6,6 +6,8 @@
   "item.cursor.laser_gun": "Laser Gun",
   "item.cursor.carrot_cannon": "Carrot Cannon",
   "item.cursor.chicken_gun": "Pig Gun",
+  "item.cursor.disappointment_bucket": "Bucket of Liquid Disappointment",
+  "block.cursor.disappointment_block": "Liquid Disappointment",
   "entity.cursor.cube_mob": "Cube Mob",
   "entity.cursor.carrot_projectile": "Carrot Projectile",
   "entity.cursor.exploding_pig": "Exploding Pig",

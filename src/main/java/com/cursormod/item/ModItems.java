@@ -1,13 +1,16 @@
 package com.cursormod.item;
 
 import com.cursormod.Cursor;
+import com.cursormod.fluid.ModFluids;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tiers;
 
 public class ModItems {
@@ -54,6 +57,13 @@ public class ModItems {
     public static final Item CHICKEN_GUN = registerItem("chicken_gun",
         new ChickenGun(new FabricItemSettings()
             .durability(150) // 150 выстрелов
+        ));
+    
+    // Ведро с жидким разочарованием - для тех моментов, когда надо полить им всё вокруг
+    public static final Item DISAPPOINTMENT_BUCKET = registerItem("disappointment_bucket",
+        new BucketItem(ModFluids.DISAPPOINTMENT, new FabricItemSettings()
+            .craftRemainder(Items.BUCKET)
+            .stacksTo(1)
         ));
 
     private static Item registerItem(String name, Item item) {
