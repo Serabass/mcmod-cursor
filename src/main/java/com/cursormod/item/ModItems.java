@@ -1,12 +1,14 @@
 package com.cursormod.item;
 
 import com.cursormod.Cursor;
+import com.cursormod.block.ModBlocks;
 import com.cursormod.fluid.ModFluids;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -65,6 +67,10 @@ public class ModItems {
             .craftRemainder(Items.BUCKET)
             .stacksTo(1)
         ));
+    
+    // Свиноматор-3000 - блок для спавна взрывных свиней
+    public static final Item PIG_SPAWNER = registerItem("pig_spawner",
+        new BlockItem(ModBlocks.PIG_SPAWNER, new FabricItemSettings()));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(Cursor.MOD_ID, name), item);

@@ -42,6 +42,27 @@ public class ExplodingPig extends Pig {
         Cursor.LOGGER.info("🐷💣 ExplodingPig created! Will explode in {} ticks!", ticksUntilExplosion);
     }
     
+    /**
+     * Взрывные свиньи не получают урон от падения - они слишком крутые для этого!
+     */
+    @Override
+    public boolean causeFallDamage(float fallDistance, float multiplier, net.minecraft.world.damagesource.DamageSource damageSource) {
+        // Возвращаем false - нет урона от падения!
+        return false;
+    }
+    
+    /**
+     * Дополнительная защита - иммунитет к урону от падения
+     */
+    @Override
+    public boolean isInvulnerableTo(net.minecraft.world.damagesource.DamageSource source) {
+        // Проверяем, является ли урон от падения
+        if (source == this.damageSources().fall()) {
+            return true; // Игнорируем урон от падения
+        }
+        return super.isInvulnerableTo(source);
+    }
+    
     // Конструктор для поросят с указанием поколения
     public ExplodingPig(EntityType<? extends Pig> entityType, Level level, int generation) {
         this(entityType, level);

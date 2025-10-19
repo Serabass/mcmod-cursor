@@ -8,6 +8,8 @@
   "item.cursor.chicken_gun": "Свиная пушка",
   "item.cursor.disappointment_bucket": "Ведро с жидким разочарованием",
   "block.cursor.disappointment_block": "Жидкое разочарование",
+  "block.cursor.pig_spawner": "Свиноматор-3000",
+  "block.cursor.pig_spawner.activated": "🐷💣 Запущено %s взрывных свиней!",
   "entity.cursor.cube_mob": "Кубический моб",
   "entity.cursor.carrot_projectile": "Снаряд морковки",
   "entity.cursor.exploding_pig": "Взрывающаяся свинья",

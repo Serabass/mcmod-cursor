@@ -1,6 +1,7 @@
 package com.cursormod;
 
 import com.cursormod.block.ModBlocks;
+import com.cursormod.block.entity.ModBlockEntities;
 import com.cursormod.fluid.ModFluids;
 import com.cursormod.item.ModItems;
 import com.cursormod.item.ModItemGroups;
@@ -36,6 +37,9 @@ public class Cursor implements ModInitializer {
 		// Теперь регистрируем блок жидкости
 		ModBlocks.registerDisappointmentBlock(() -> ModFluids.DISAPPOINTMENT);
 		ModBlocks.registerModBlocks();
+		
+		// Регистрируем BlockEntity
+		ModBlockEntities.registerBlockEntities();
 		
 		// Регистрируем предметы мода
 		ModItems.registerModItems();

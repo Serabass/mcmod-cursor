@@ -8,6 +8,8 @@
   "item.cursor.chicken_gun": "Pig Gun",
   "item.cursor.disappointment_bucket": "Bucket of Liquid Disappointment",
   "block.cursor.disappointment_block": "Liquid Disappointment",
+  "block.cursor.pig_spawner": "Pig-o-matic 3000",
+  "block.cursor.pig_spawner.activated": "🐷💣 Spawned %s explosive pigs!",
   "entity.cursor.cube_mob": "Cube Mob",
   "entity.cursor.carrot_projectile": "Carrot Projectile",
   "entity.cursor.exploding_pig": "Exploding Pig",
