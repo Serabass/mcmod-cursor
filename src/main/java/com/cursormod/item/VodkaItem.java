@@ -2,7 +2,7 @@ package com.cursormod.item;
 
 import com.cursormod.Cursor;
 import com.cursormod.effects.DrunkEffect;
-import com.cursormod.effects.FlyingPigEffect;
+import com.cursormod.effects.BigPigEffect;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.player.Player;
@@ -64,11 +64,11 @@ public class VodkaItem extends Item {
                 player.getInventory().add(new ItemStack(Items.GLASS_BOTTLE));
             }
         } else if (user instanceof Pig pig) {
-            Cursor.LOGGER.info("🐷 Pig {} drank vodka! It's growing wings!", 
+            Cursor.LOGGER.info("🐷 Pig {} drank vodka! It's growing big and fast!", 
                 pig.getName().getString());
             
-            // Добавляем эффект летающей свиньи на 60 секунд (1200 тиков)
-            pig.addEffect(new MobEffectInstance(FlyingPigEffect.FLYING_PIG_EFFECT, 1200, 0));
+            // Добавляем эффект большой свиньи на 60 секунд (1200 тиков)
+            pig.addEffect(new MobEffectInstance(BigPigEffect.BIG_PIG_EFFECT, 1200, 0));
             
             // Создаем магические частицы
             if (world instanceof ServerLevel serverLevel) {

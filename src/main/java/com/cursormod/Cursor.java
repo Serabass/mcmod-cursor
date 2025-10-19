@@ -4,8 +4,9 @@ import com.cursormod.item.ModItems;
 import com.cursormod.item.ModItemGroups;
 import com.cursormod.entity.ModEntities;
 import com.cursormod.events.ServerTickHandler;
+import com.cursormod.events.EntityInteractionHandler;
 import com.cursormod.effects.DrunkEffect;
-import com.cursormod.effects.FlyingPigEffect;
+import com.cursormod.effects.BigPigEffect;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -39,8 +40,11 @@ public class Cursor implements ModInitializer {
         // Регистрируем обработчик событий сервера
         ServerTickHandler.register();
         
+        // Регистрируем обработчик взаимодействия с сущностями
+        EntityInteractionHandler.register();
+        
         // Регистрируем эффекты мода
         DrunkEffect.DRUNK_EFFECT.toString(); // Инициализируем эффект
-        FlyingPigEffect.FLYING_PIG_EFFECT.toString(); // Инициализируем эффект летающей свиньи
+        BigPigEffect.BIG_PIG_EFFECT.toString(); // Инициализируем эффект большой свиньи
 	}
 }
