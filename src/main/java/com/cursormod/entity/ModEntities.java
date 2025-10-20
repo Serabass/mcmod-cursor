@@ -32,6 +32,16 @@ public class ModEntities {
             .build()
     );
     
+    // Регистрируем снаряд огненной картофелины
+    public static final EntityType<FirePotatoProjectile> FIRE_POTATO_PROJECTILE = Registry.register(
+        BuiltInRegistries.ENTITY_TYPE,
+        new ResourceLocation(Cursor.MOD_ID, "fire_potato_projectile"),
+        FabricEntityTypeBuilder.create(MobCategory.MISC, (EntityType<FirePotatoProjectile> entityType, Level level) -> 
+            new FirePotatoProjectile(entityType, level))
+            .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
+            .build()
+    );
+    
     // Регистрируем взрывающуюся свинью
     public static final EntityType<ExplodingPig> EXPLODING_PIG = Registry.register(
         BuiltInRegistries.ENTITY_TYPE,
@@ -61,6 +71,7 @@ public class ModEntities {
         
         Cursor.LOGGER.info("🔷 CUBE_MOB registered with ID: cursor:cube_mob");
         Cursor.LOGGER.info("🥕 CARROT_PROJECTILE registered with ID: cursor:carrot_projectile");
+        Cursor.LOGGER.info("🔥🥔 FIRE_POTATO_PROJECTILE registered with ID: cursor:fire_potato_projectile");
         Cursor.LOGGER.info("🐷💣 EXPLODING_PIG registered with ID: cursor:exploding_pig");
         Cursor.LOGGER.info("🔨⚡ THOR_HAMMER_PROJECTILE registered with ID: cursor:thor_hammer_projectile");
     }

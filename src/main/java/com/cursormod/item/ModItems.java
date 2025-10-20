@@ -61,6 +61,13 @@ public class ModItems {
             .durability(150) // 150 выстрелов
         ));
     
+    // Огненная картофельная пушка - стреляет поджигающими картофелинами
+    public static final Item FIRE_POTATO_GUN = registerItem("fire_potato_gun",
+        new FirePotatoGun(new FabricItemSettings()
+            .durability(160)
+            .fireResistant()
+        ));
+    
     // Ведро с жидким разочарованием - для тех моментов, когда надо полить им всё вокруг
     public static final Item DISAPPOINTMENT_BUCKET = registerItem("disappointment_bucket",
         new BucketItem(ModFluids.DISAPPOINTMENT, new FabricItemSettings()
@@ -87,5 +94,6 @@ public class ModItems {
         Cursor.LOGGER.info("🍌 Registering Mod Items for " + Cursor.MOD_ID);
         Cursor.LOGGER.info("🍌 RED_BANANA registered with ID: cursor:red_banana");
         Cursor.LOGGER.info("🔨⚡ THOR_HAMMER registered with ID: cursor:thor_hammer");
+        Cursor.LOGGER.info("🔥🥔 FIRE_POTATO_GUN registered with ID: cursor:fire_potato_gun");
     }
 }

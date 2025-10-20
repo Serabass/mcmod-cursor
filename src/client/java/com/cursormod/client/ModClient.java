@@ -3,6 +3,7 @@ package com.cursormod.client;
 import com.cursormod.Cursor;
 import com.cursormod.client.renderer.CubeMobRenderer;
 import com.cursormod.client.CarrotProjectileRenderer;
+import com.cursormod.client.renderer.FirePotatoRenderer;
 import com.cursormod.client.ThorHammerRenderer;
 import com.cursormod.entity.ModEntities;
 import net.fabricmc.api.ClientModInitializer;
@@ -19,6 +20,9 @@ public class ModClient implements ClientModInitializer {
         
         // Регистрируем рендерер для снаряда морковки
         EntityRendererRegistry.register(ModEntities.CARROT_PROJECTILE, CarrotProjectileRenderer::new);
+        
+        // Регистрируем рендерер для снаряда огненной картофелины
+        EntityRendererRegistry.register(ModEntities.FIRE_POTATO_PROJECTILE, FirePotatoRenderer::new);
         
         // Регистрируем рендерер для молота Тора
         EntityRendererRegistry.register(ModEntities.THOR_HAMMER_PROJECTILE, ThorHammerRenderer::new);

@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "cursor:item/fire_potato_gun"
+  }
+}

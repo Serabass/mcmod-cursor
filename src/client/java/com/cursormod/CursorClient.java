@@ -1,6 +1,7 @@
 package com.cursormod;
 
 import com.cursormod.client.CarrotProjectileRenderer;
+import com.cursormod.client.renderer.FirePotatoRenderer;
 import com.cursormod.client.renderer.CubeMobRenderer;
 import com.cursormod.client.renderer.HealthBarRenderer;
 import com.cursormod.entity.ModEntities;
@@ -20,6 +21,7 @@ public class CursorClient implements ClientModInitializer {
 		// Регистрируем рендереры сущностей
 		EntityRendererRegistry.register(ModEntities.CUBE_MOB, CubeMobRenderer::new);
 		EntityRendererRegistry.register(ModEntities.CARROT_PROJECTILE, CarrotProjectileRenderer::new);
+		EntityRendererRegistry.register(ModEntities.FIRE_POTATO_PROJECTILE, FirePotatoRenderer::new);
 		EntityRendererRegistry.register(ModEntities.EXPLODING_PIG, PigRenderer::new);
 		
 		// Регистрируем рендеринг жидкого разочарования
